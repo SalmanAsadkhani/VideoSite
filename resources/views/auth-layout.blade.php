@@ -12,7 +12,7 @@
     <!-- Bootstrap Core CSS -->
     <!-- Owl Carousel Assets -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
-          type="text/css" />
+        type="text/css" />
 
     <!--Google Fonts-->
     <link
@@ -25,25 +25,21 @@
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
 
 </head>
 
-<body class="@yield("class-body")">
-
-<div class="site-output">
+<body class="@yield('class-body')">
     @if (session('alert'))
         <div class="alert alert-success">
             {{ session('alert') }}
         </div>
     @endif
 
-    @yield("content");
-</div>
-
-<script src="{{ asset('js/main.js') }}"></script>
+    @yield('content')
+    <script src="{{ asset('js/main.js') }}"></script>
 </body>
 
 </html>

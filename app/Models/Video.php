@@ -46,7 +46,6 @@ class Video extends Model
     {
         return (new Verta($value))->formatDifference();
     }
-
     public function relatedVideos(int $count = 6)
     {
         return $this->category->getRandomVideos($count);
@@ -66,10 +65,12 @@ class Video extends Model
     {
         return $this->belongsTo(User::class);
     }
+
     public function getOwnerNameAttribute()
     {
         return $this->user?->name;
     }
+
     public function getOwnerAvatarAttribute()
     {
         return $this->user?->gravatar;

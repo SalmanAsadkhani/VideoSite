@@ -16,7 +16,7 @@ trait Likeable {
 
     public function likes()
     {
-        return $this->morphMany(Like::class, 'likeable');
+            return $this->morphMany(Like::class, 'likeable');
     }
 
     public function getlikeCountAttribute()
@@ -29,6 +29,7 @@ trait Likeable {
                 ->count();
         });
     }
+
     public function getDislikeCountAttribute()
     {
         $CacheKeyName = 'disLike_Count_For_' . class_basename($this) .'_' . $this->id;

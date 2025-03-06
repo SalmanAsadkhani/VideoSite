@@ -6,7 +6,7 @@
             <!-- upload -->
             <div class="col-md-8">
                 <h1 class="page-title"><span>آپلود</span> ویدیو</h1>
-                <form action="{{ route('videos.update', $video->slug) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('videos.update', $video->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <div class="col-md-6">

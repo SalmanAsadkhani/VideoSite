@@ -3,6 +3,7 @@
 namespace App\Models;
 
 
+use Hekmatinasser\Verta\Verta;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -54,6 +55,11 @@ class User extends Authenticatable
     public function videos()
     {
         return $this->hasMany(Video::class);
+    }
+
+    public function getCreatedAtAttribute($value)
+    {
+        return (new Verta($value))->formatDifference();
     }
 
 

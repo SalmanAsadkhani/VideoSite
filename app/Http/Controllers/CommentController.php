@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
-    public function  store(StoreCommentRequest  $request,Video  $video)
+    public function  store(StoreCommentRequest  $request ,Video  $video)
     {
 
         $video->comments()->create([

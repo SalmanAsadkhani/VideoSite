@@ -24,7 +24,6 @@
                         <div class="col-md-6">
                             <label>آپلود ویدیو</label>
                             <input type="file" name="file" class="form-control" >
-
                         </div>
 
                         <div class="col-md-6">
@@ -35,22 +34,24 @@
                                 @endforeach
                             </select>
                         </div>
+
                         <div class="col-md-12">
                             <label>توضیحات</label>
                             <textarea class="form-control" name="description" rows="4"
                                 placeholder="توضیح">{{ old('description') }}</textarea>
                         </div>
+
                         <div class="col-md-2">
                             <button type="submit" id="contact_submit" class="btn btn-dm">ذخیره</button>
                         </div>
                     </div>
                 </form>
-            </div><!-- // col-md-8 -->
+            </div>
 
             <div class="col-md-4">
                 <a href="#"><img src="{{ asset('img/upload-adv.png') }}" alt=""></a>
-            </div><!-- // col-md-8 -->
-            <!-- // upload -->
-        </div><!-- // row -->
+            </div>
+
+        </div>
     </div>
 @endsection

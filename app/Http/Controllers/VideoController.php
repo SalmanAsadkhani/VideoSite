@@ -27,7 +27,7 @@ class VideoController extends Controller
         return view('videos.create', compact('categories'));
     }
 
-    public function store(Request $request)
+    public function store(StoreVideoRequest $request)
     {
 
         (new VideoService())->create($request->user(), $request->all());
@@ -35,7 +35,7 @@ class VideoController extends Controller
         return redirect()->route('index')->with('alert', __('messages.success'));
     }
 
-    public function show(Request $request, Video $video)
+    public function show( Video $video)
     {
         return view('videos.show', compact('video' ));
     }
@@ -46,13 +46,13 @@ class VideoController extends Controller
         $this->authorize('update', $video);
 
         $categories = Category::all();
-        return view('videos.edit', compact('video', 'categories'));
+        return view('panel.video.edit', compact('video', 'categories'));
     }
 
     public function update(UpdateVideoRequest $request, Video $video)
     {
         (new VideoService())->update($video, $request->all());
 
-        return redirect()->route('videos.show', $video->slug)->with('alert', __('messages.video_edited'));
+        return redirect()->route('panel.show.all')->with('alert', __('messages.video_edited'));
     }
 }
