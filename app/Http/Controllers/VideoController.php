@@ -35,7 +35,7 @@ class VideoController extends Controller
         return redirect()->route('index')->with('alert', __('messages.success'));
     }
 
-    public function show(Request $request, Video $video)
+    public function show( Video $video)
     {
         return view('videos.show', compact('video' ));
     }

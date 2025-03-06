@@ -40,7 +40,8 @@ Route::post('/videos', [VideoController::class, 'store'])
 
 Route::get('/videos/{video}', [VideoController::class, 'show'])
 
-    ->name('videos.show');
+    ->name('videos.show')
+    ->middleware('admin');
 
 Route::get('/videos/{video}/edit', [VideoController::class, 'edit'])
     ->name('videos.edit');

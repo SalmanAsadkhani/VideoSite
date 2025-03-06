@@ -34,6 +34,7 @@
 <body class="@yield("class-body")">
 
 <div class="site-output">
+
     @if (session('alert'))
         <div class="alert alert-success">
             {{ session('alert') }}

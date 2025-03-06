@@ -66,10 +66,12 @@ class Video extends Model
     {
         return $this->belongsTo(User::class);
     }
+
     public function getOwnerNameAttribute()
     {
         return $this->user?->name;
     }
+
     public function getOwnerAvatarAttribute()
     {
         return $this->user?->gravatar;
