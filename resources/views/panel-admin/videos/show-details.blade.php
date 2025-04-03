@@ -48,161 +48,42 @@
 
                                     @foreach($videos as $video)
                                         <tr>
-                                            @if( $video->status === 0 )
-                                                <td>{{ $video->id}}</td>
-                                                <td> {{$video->name}} </td>
-                                                <td>
-                                                    <div class="orderDatatable-status d-inline-block" >
-                                                        <span class="order-bg-opacity-warning  text-warning rounded-pill"> در انتظار تایید </span>
-                                                    </div>
-                                                </td>
+                                            <td> {{ $video->id}}</td>
+                                            <td> {{$video->name}} </td>
 
-                                                <td>
-                                                    <div class="d-flex  gap-2">
-                                                        <button type="submit" class="btn btn-success btn-sm change-status" data-id="{{ $video->id }}" data-status="1">تایید</button>
-                                                        <button type="submit" class="btn btn-warning btn-sm change-status" data-id="{{ $video->id }}" data-status="2">رد</button>
-                                                        <button type="submit"  class="btn btn-danger btn-sm change-status" data-id="{{ $video->id }}" data-status="3">مسدود</button>
-                                                    </div>
+                                            <td>
+                                                <div class="name-status orderDatatable-status d-inline-block" >
+                                                    <span class="element-status {{ $video->status == 'allow' ? " order-bg-opacity-success  text-success "  : "order-bg-opacity-danger  text-danger" }}   rounded-pill"> {{ $video->status == 'allow' ? "تایید شده"  : "رد شده" }} </span>
+                                                </div>
+                                            </td>
 
-                                                </td>
+                                            <td>
 
-                                                <td>
-                                                    <ul class="orderDatatable_actions mb-0 d-flex flex-wrap float-start gap-2">
-                                                        <li>
-                                                            <a href=" {{ route('panel.show' , $video->slug)}} " class="view">
-                                                                <i class="uil uil-eye"></i>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="{{ route('panel.video.edit' , $video->slug)}} " class="edit">
-                                                                <i class="uil uil-edit"></i>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href=" {{ route('panel.video.destroy' , $video->slug) }}" class="remove" data-id=" {{$video->id}} ">
-                                                                <i class="uil uil-trash-alt"></i>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </td>
+                                                <div class="form-check form-switch ">
+                                                    <input class="form-check-input status" type="checkbox"
+                                                        {{ $video->status == 'allow' ? "checked"  : "" }} data-id="{{$video->id}}" >
+                                                </div>
+                                            </td>
 
-                                            @elseif($video->status === 1)
-                                                <td>{{ $video->id}}</td>
-                                                <td> {{$video->name}} </td>
-
-                                                <td>
-                                                    <div class="orderDatatable-status d-inline-block" >
-                                                        <span class="order-bg-opacity-success  text-success rounded-pill"> تایید شده </span>
-                                                    </div>
-                                                </td>
-
-                                                <td>
-                                                    <div class="d-flex gap-2">
-                                                        <button type="submit" class="btn btn-success btn-sm change-status" data-id="{{ $video->id }}" data-status="1">تایید</button>
-                                                        <button type="submit" class="btn btn-warning btn-sm change-status" data-id="{{ $video->id }}" data-status="2">رد</button>
-                                                        <button type="submit"  class="btn btn-danger btn-sm change-status" data-id="{{ $video->id }}" data-status="3">مسدود</button>
-                                                    </div>
-                                                </td>
-
-                                                <td>
-                                                    <ul class="orderDatatable_actions mb-0 d-flex flex-wrap float-start gap-2">
-                                                        <li>
-                                                            <a href=" {{ route('panel.show' , $video->slug)}} " class="view">
-                                                                <i class="uil uil-eye"></i>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href=" {{ route('panel.video.edit' , $video->slug)}} " class="edit">
-                                                                <i class="uil uil-edit"></i>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href=" {{ route('panel.video.destroy' , $video->slug) }}" class="remove"  data-id = {{$video->id}}>
-                                                                <i class="uil uil-trash-alt"></i>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </td>
-
-
-                                            @elseif($video->status === 2)
-                                                <td> {{ $video->id}}</td>
-                                                <td> {{$video->name}} </td>
-
-                                                <td>
-                                                    <div class="orderDatatable-status d-inline-block" >
-                                                        <span class="order-bg-opacity-danger  text-danger rounded-pill"> رد شده</span>
-                                                    </div>
-                                                </td>
-
-                                                <td>
-                                                    <div class="d-flex gap-2 ">
-                                                        <button type="submit" class="btn btn-success btn-sm change-status" data-id="{{ $video->id }}" data-status="1">تایید</button>
-                                                        <button type="submit" class="btn btn-warning btn-sm change-status" data-id="{{ $video->id }}" data-status="2">رد</button>
-                                                        <button type="submit"  class="btn btn-danger btn-sm change-status" data-id="{{ $video->id }}" data-status="3">مسدود</button>
-                                                    </div>
-                                                </td>
-
-                                                <td>
-                                                    <ul class="orderDatatable_actions mb-0 d-flex float-start  gap-2">
-                                                        <li>
-                                                            <a href=" {{ route('panel.show' , $video->slug)}} " class="view">
-                                                                <i class="uil uil-eye"></i>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href=" {{ route('panel.video.edit' , $video->slug)}} " class="edit">
-                                                                <i class="uil uil-edit"></i>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href=" {{ route('panel.video.destroy' , $video->slug) }}" class="remove" data-id = {{$video->id}}>
-                                                                <i class="uil uil-trash-alt"></i>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </td>
-
-
-                                            @elseif($video->status === 3)
-                                                <td> {{ $video->id}}</td>
-                                                <td> {{$video->name}} </td>
-
-                                                <td>
-                                                    <div class="orderDatatable-status d-inline-block" >
-                                                        <span class="order-bg-opacity-danger  text-light rounded-pill"> مسدود شده </span>
-                                                    </div>
-                                                </td>
-
-                                                <td>
-                                                    <div class="d-flex gap-2">
-                                                        <button type="submit" class="btn btn-success btn-sm change-status" data-id="{{ $video->id }}" data-status="1">تایید</button>
-                                                        <button type="submit" class="btn btn-warning btn-sm change-status" data-id="{{ $video->id }}" data-status="2">رد</button>
-                                                        <button type="submit"  class="btn btn-danger btn-sm change-status" data-id="{{ $video->id }}" data-status="3">مسدود</button>
-                                                    </div>
-                                                </td>
-
-                                                <td>
-                                                    <ul class="orderDatatable_actions mb-0 d-flex flex-wrap float-start gap-2">
-                                                        <li>
-                                                            <a href=" {{ route('panel.show' , $video->slug)}} " class="view">
-                                                                <i class="uil uil-eye"></i>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href=" {{ route('panel.video.edit' , $video->slug)}} " class="edit">
-                                                                <i class="uil uil-edit"></i>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href=" {{ route('panel.video.destroy' , $video->slug) }}" class="remove"  data-id = {{$video->id}} >
-                                                                <i class="uil uil-trash-alt"></i>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </td>
-
-                                            @endif
+                                            <td>
+                                                <ul class="orderDatatable_actions mb-0 d-flex float-start  gap-2">
+                                                    <li>
+                                                        <a href=" {{ route('panel.show' , $video->slug)}} " class="view">
+                                                            <i class="uil uil-eye"></i>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href=" {{ route('panel.video.edit' , $video->slug)}} " class="edit">
+                                                            <i class="uil uil-edit"></i>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a  class="remove" data-id = {{$video->id}}>
+                                                            <i class="uil uil-trash-alt"></i>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </td>
                                         </tr>
                                     @endforeach
 
@@ -211,66 +92,69 @@
 
 
                             <script>
-
-                                $(document).ready(function() {
-                                    $(".remove").click(function(e) {
-                                        e.preventDefault(); // جلوگیری از لود شدن صفحه
-
-                                        var videoId = $(this).data("id"); // دریافت ID ویدیو
-                                        var url = $(this).attr("href"); // دریافت لینک حذف از `href`
-                                        var row = $(this).closest("tr"); // گرفتن ردیف مربوطه
-
-                                        if (confirm("آیا مطمئن هستید که می‌خواهید این ویدیو را حذف کنید؟")) {
-                                            $.ajax({
-                                                url: url,
-                                                type: "POST", // متد `POST` برای حذف
-                                                data: {
-                                                    _method: "DELETE", // شبیه‌سازی متد `DELETE`
-                                                    _token: "{{ csrf_token() }}", // ارسال CSRF برای امنیت
-                                                    id: videoId
-                                                },
-                                                success: function(response) {
-                                                    if (response.success) {
-                                                        row.fadeOut(); // حذف ردیف از جدول
-                                                        alert(response.message);
-                                                    } else {
-                                                        alert("خطا در حذف ویدیو!");
-                                                    }
-                                                },
-                                                error: function() {
-                                                    alert("ارتباط با سرور برقرار نشد!");
-                                                }
-                                            });
-                                        }
-                                    });
-                                });
-
+                                // فعال کردن و غیر فعال کردن وضعیت فیلم
                                 $(document).ready(function () {
+                                    $('.status').change(function () {
 
-                                    $(document).on('click', '.change-status', function () {
-
+                                        // دریافت ایدی و  تغییر  باکس
                                         let videoId = $(this).data('id');
-                                        let newStatus = $(this).data('status');
-                                        let token = $('meta[name="csrf-token"]').attr('content');
+                                        let status = $(this).is(':checked') ? 'allow' : 'deny';
+
+                                        // دریافت  االمنت  وضعیت و تغییر متن آن
+                                        let statusElement = $(this).closest('tr').find('.element-status');
+                                        let statusText = status === 'allow' ? "تایید شده" : "رد شده";
 
                                         $.ajax({
-                                            url: '{{ route("videos.changeStatus") }}',
-                                            type: 'POST',
+                                            url: "{{ route('panel.video.status', ':id') }}".replace(':id', videoId),
+                                            type: "POST",
                                             data: {
-                                                _token: token,
+                                                status: status,
                                                 video_id: videoId,
-                                                status: newStatus
+                                                _token: "{{ csrf_token() }}"
                                             },
                                             success: function (response) {
-                                                alert(response.message);
-                                                location.reload();
+
+                                                let newClass = response['status'] === 'allow' ? "order-bg-opacity-success text-success" : "order-bg-opacity-danger text-danger";
+
+                                                statusElement.text(statusText)
+                                                    .removeClass("order-bg-opacity-danger text-danger order-bg-opacity-success text-success") // حذف کلاس‌های قبلی
+                                                    .addClass(newClass);
                                             },
-                                            error: function (xhr) {
-                                                alert('خطایی رخ داده است: ' + xhr.responseText);
+                                            error: function (error) {
+                                                console.log("Error:", error.responseText);
                                             }
                                         });
                                     });
                                 });
+
+                                // حذف کردن ویدیو
+                                $(document).ready(function () {
+                                    $('.remove').click(function () {
+                                        let videoId = $(this).data('id');
+
+                                        if (!confirm('ویدیو حذف گردد؟')) {
+                                            return;
+                                        }
+
+                                        $.ajax({
+                                            url: "{{ route('panel.video.destroy', ':id') }}".replace(':id', videoId),
+                                            type: 'POST',
+                                            data: {
+                                                _method: "DELETE",
+                                                video_id: videoId,
+                                                _token: "{{ csrf_token() }}"
+                                            },
+                                            success: function (response) {
+                                                alert(response['delete']);
+                                                location.reload();
+                                            },
+                                            error: function (error) {
+                                                alert(error['error'])
+                                            }
+                                        });
+                                    });
+                                });
+
                             </script>
 
 

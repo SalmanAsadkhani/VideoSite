@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Filters\VideoFilter;
+use App\Models\Traits\Favoriteable;
 use App\Models\Traits\Likeable;
 use FFMpeg\Filters\Video\VideoFilters;
 use Hekmatinasser\Verta\Verta;
@@ -16,7 +17,7 @@ use Illuminate\Support\Facades\Storage;
 
 class Video extends Model
 {
-    use HasFactory , Likeable ,SoftDeletes;
+    use HasFactory , Likeable ,SoftDeletes ;
 
     protected $fillable = [
         'name',
@@ -25,7 +26,8 @@ class Video extends Model
         'path',
         'slug',
         'thumbnail',
-        'category_id'
+        'category_id',
+        'status'
     ];
 
     protected $hidden =  ['path' , 'thumbnail'];
@@ -79,8 +81,13 @@ class Video extends Model
 
     public function comments()
     {
-        return $this->hasMany(Comment::class)->orderBy('created_at', 'desc');
+        return $this->hasMany(Comment::class);
     }
+
+    public function favorites(){
+        return $this->hasMany(Favorite::class);
+    }
+
 
     public function getVideoUrlAttribute()
     {
@@ -94,9 +101,29 @@ class Video extends Model
 
     }
 
-    public function scopeFilter(Builder $builder , array $params)
+    public function scopeFilters(Builder $builder , array $params)
     {
         return (new VideoFilter($builder))->apply($params);
     }
 
+
+    public function scopeSearch(Builder $builder , array $params)
+    {
+        if (isset($params['q'])) {
+            $builder->where('name', 'like', "%{$params['q']}%");
+        }
+
+        return $builder;
+    }
+
+
+    public function ratings()
+    {
+        return $this->hasMany(VideoRating::class);
+    }
+
+    public function averageRating()
+    {
+        return $this->ratings()->avg('rating') ?? 0;
+    }
 }

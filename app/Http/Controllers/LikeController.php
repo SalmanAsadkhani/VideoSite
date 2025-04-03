@@ -17,9 +17,14 @@ class LikeController extends Controller
             return back();
         } else {
 
-            return redirect()->route('login.create')->with('alert', __('messages.please_first_login'));
+            return redirect()->route('login.create')->with('error', __('messages.please_first_login'));
         }
 
+    }
+
+    public function test(video $video)
+    {
+        dd('$video');
     }
 
 

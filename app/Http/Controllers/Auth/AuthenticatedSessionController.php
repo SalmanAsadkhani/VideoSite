@@ -34,7 +34,7 @@ class AuthenticatedSessionController extends Controller
 
 
 
-        return redirect()->intended(RouteServiceProvider::HOME)->with('alert', __('messages.login.success'));
+        return redirect()->intended(RouteServiceProvider::HOME)->with('success', __('messages.login.success'));
     }
 
     public function destroy(Request $request)

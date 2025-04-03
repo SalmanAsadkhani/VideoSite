@@ -1,54 +1,53 @@
 @extends("auth-layout")
 @section("content")
 
-<body class="class-body">
-<!--======= log_in_page =======-->
-
-<div id="log-in" class="site-form log-in-form">
-
-    <div id="log-in-head">
-        <h1>ورود</h1>
-        <div id="logo"><a href="{{route("index")}}"><img src="img/logo.png" alt=""></a></div>
-    </div>
 
 
-    <x-auth-validation-errors class="mb-4" :errors="$errors" />
+    <div class="container row d-flex justify-content-center mt-5 bg-dark p-4" style="max-width:40rem ; margin: auto; border-radius: 1rem ">
+        <div class="login-header d-flex justify-content-between align-items-center w-100 ">
+            <a href="{{route('index')}}"><img src=" {{asset('img/logo.png')}} " alt="logo"></a>
+            <h5 class="text-lighter">ورود</h5>
+        </div>
 
-    <div class="form-output">
-        <form action="{{route("login.store")}}" method="post">
-            @csrf
 
-            <div class="form-group label-floating">
-                <label class="control-label">ایمیل</label>
-                <input class="form-control" placeholder="ایمیل" type="email" value="{{old("name")}}" name="email">
-            </div>
-            <div class="form-group label-floating">
-                <label class="control-label">رمز عبور</label>
-                <input class="form-control" placeholder="رمز عبور" type="password" value="{{old("name")}}" name="password">
+        <div class="border-form"></div>
+
+        <form class="row d-flex justify-content-center" action="{{route('login.store')}}" method="post">
+        @csrf
+
+            <div class="form-group">
+                @error('email') <small class="alert alert-danger p-1 me-3 mb-4"><i class="fa fa-exclamation-circle"></i> {{$message}} </small>@enderror
+
+                <label for="email" class="w-100 col-form-label me-2">
+                    <input id="email" class="form-control form-login" placeholder="ایمیل خود را وارد کنید" type="email"  name="email">
+                </label>
             </div>
 
-            <div class="remember">
-                <div class="checkbox">
-                    <label>
-                        <input name="remember" type="checkbox">
-                        مرا به خاطر بسپار
-                    </label>
-                </div>
-                <a href="{{route("password.request")}}" class="forgot">رمز عبور من را فراموش کرده ام</a>
+
+
+            <div class="form-group ">
+                @error('password') <small class="alert alert-danger p-1 me-3"><i class="fa fa-exclamation-circle"></i> {{$message}} </small>@enderror
+                <label for="password" class="w-100 col-form-label me-2">
+                    <input id="password" class="form-control form-login" placeholder="رمز عبور خود را وارد کنید" type="password"  name="password">
+                </label>
             </div>
 
-            <button type="submit" class="btn btn-lg btn-primary full-width"> ورود   </button>
 
-{{--            <div class="or"></div>--}}
+            <div class="form-group">
+                <label class="w-100 col-form-label me-3 d-flex align-items-center gap-1" >
+                    <input id="remember"  type="checkbox"  name="remember" >
+                   <span class="small">  مرا به خاطر بسپار </span>
+                </label>
+            </div>
 
-{{--            <a href="#" class="btn btn-lg bg-facebook full-width btn-icon-left"><i class="fa fa-facebook" aria-hidden="true"></i>ورود با فیس بوک</a>--}}
-
-{{--            <a href="#" class="btn btn-lg bg-twitter full-width btn-icon-left"><i class="fa fa-twitter" aria-hidden="true"></i>ورود با توییتر</a>--}}
 
 
-            <p>آیا شما یک حساب کاربری ندارید؟ <a href="{{route("register.create")}}">ثبت نام کنید!</a> </p>
+            <button class="btn bg-danger text-light w-75 text-center  mt-3" type="submit">ورود</button>
+
+            <p class="mt-4 me-5"> حساب کاربری ندارید؟ <a class="text-danger" href="{{route("register.create")}}"> ثبت نام </a> </p>
+
+
         </form>
     </div>
-</div>
-<!--======= // log_in_page =======-->
+
 @endsection

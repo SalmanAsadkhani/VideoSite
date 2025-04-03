@@ -2,7 +2,7 @@
 
 
 return [
-    'success' => 'عملیات شما موفقیت آمیز بود.',
+    'success' => 'اپلود ویدیو با موفقیت انجام شد ',
     'video_edited' => 'ویدیو شما با موفقیت بروزرسانی شد.',
     'please_verify_your_email' => 'برای بهره‌مند شدن از تمامی امکانات سایت لطفا ایمیل خود را تایید کنید.',
     'verification_email_was_sent' => 'ایمیل تاییدیه ارسال شد.',
@@ -21,5 +21,10 @@ return [
     'FAMALE'  => "زن",
     'edit-video-success'=> 'ویدیو با موفقیت ویرایش گردید',
     'video-delete-success' => 'ویدیو با موفقیت حذف گردید',
+
+    'change-profile-success' =>  "پروفایل با موفقیت تغییر یافت.",
+
+    'change-password-success' =>  "رمز عبور با موفقیت تغییر یافت.",
+
 ];
 

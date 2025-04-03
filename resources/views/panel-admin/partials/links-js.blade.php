@@ -1,10 +1,13 @@
 
-<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBgYKHZB_QKKLWfIRaYPCadza3nhTAbv7c"></script>
-<script src="https://html.ashkankiani.ir/hexadash/assets/vendor_assets/js/jquery/jquery-3.5.1.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
 <script src="https://html.ashkankiani.ir/hexadash/assets/vendor_assets/js/jquery/jquery-ui.js"></script>
 <script src="https://html.ashkankiani.ir/hexadash/assets/vendor_assets/js/bootstrap/popper.js"></script>
 <script src="https://html.ashkankiani.ir/hexadash/assets/vendor_assets/js/bootstrap/bootstrap.min.js"></script>
-<script src="https://html.ashkankiani.ir/hexadash/assets/vendor_assets/js/moment/moment.min.js"></script>
+{{--<script src="https://html.ashkankiani.ir/hexadash/assets/vendor_assets/js/moment/moment.min.js"></script>--}}
 <script src="https://html.ashkankiani.ir/hexadash/assets/vendor_assets/js/accordion.js"></script>
 <script src="https://html.ashkankiani.ir/hexadash/assets/vendor_assets/js/apexcharts.min.js"></script>
 <script src="https://html.ashkankiani.ir/hexadash/assets/vendor_assets/js/autoComplete.js"></script>
@@ -15,7 +18,7 @@
 <script src="https://html.ashkankiani.ir/hexadash/assets/vendor_assets/js/dynamicCheckbox.js"></script>
 <script src="https://html.ashkankiani.ir/hexadash/assets/vendor_assets/js/footable.min.js"></script>
 <script src="https://html.ashkankiani.ir/hexadash/assets/vendor_assets/js/fullcalendar@5.2.0.js"></script>
-<script src="https://html.ashkankiani.ir/hexadash/assets/vendor_assets/js/google-chart.js"></script>
+{{--<script src="https://html.ashkankiani.ir/hexadash/assets/vendor_assets/js/google-chart.js"></script>--}}
 <script src="https://html.ashkankiani.ir/hexadash/assets/vendor_assets/js/jquery-jvectormap-2.0.5.min.js"></script>
 <script src="https://html.ashkankiani.ir/hexadash/assets/vendor_assets/js/jquery-jvectormap-world-mill-en.js"></script>
 <script src="https://html.ashkankiani.ir/hexadash/assets/vendor_assets/js/jquery.countdown.min.js"></script>
@@ -45,4 +48,5 @@
 <script src="https://html.ashkankiani.ir/hexadash/assets/theme_assets/js/jvectormap-init.js"></script>
 <script src="https://html.ashkankiani.ir/hexadash/assets/theme_assets/js/leaflet-init.js"></script>
 <script src="https://html.ashkankiani.ir/hexadash/assets/theme_assets/js/main.js"></script>
+
 

@@ -1,76 +1,71 @@
 
-    @extends("auth-layout");
-    @section('content');
-    <body class="@section("class-body")">
+    @extends("auth-layout")
+    @section('content')
 
-    <div id="log-in" class="site-form log-in-form">
+    <div class="container row d-flex justify-content-center mt-5 bg-dark p-3" style="max-width:40rem ; margin: auto; border-radius: 1rem ">
+        <div class="login-header d-flex justify-content-between align-items-center mt-2 w-100 ">
+            <a href="{{route('index')}}"><img src=" {{asset('img/logo.png')}} " alt="logo"></a>
+            <a class="text-lighter">
+                <h6> ثبت نام</h6>
+            </a>
+        </div>
 
-    <div id="log-in-head">
-        <h1>ثبت نام</h1>
-        <div id="logo"><a href="{{route('index')}}"><img src="img/logo.png" alt=""></a></div>
-    </div>
+        <div class="border-form"></div>
 
-    <div class="form-output">
-
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
-
-        <form action="{{route("register.store")}}" method="post">
+        <form class="row d-flex justify-content-center" action="{{ route('register.store')}}" method="post">
             @csrf
-            <div class="form-group label-floating">
-                <label class="control-label">نام </label>
-                <input class="form-control"  value="{{old("name")}}" placeholder="نام" type="text" name="name">
-            </div>
 
-             <div class="form-group label-floating">
-                <label class="control-label">ایمیل</label>
-                <input class="form-control" value="{{old("email")}}" placeholder="ایمیل" type="email" name="email">
-            </div>
+            <div class="form-group ">
+                 @error('name') <small class="alert alert-danger p-1 me-3 mt-4"><i class="fa fa-exclamation-circle"></i> {{$message}} </small>@enderror
 
-            <div class="form-group label-floating">
-                <label class="control-label">رمز عبور</label>
-                <input class="form-control" placeholder="رمز عبور"
-                       type="password"
-                       name="password_confirmation"
-                >
-            </div>
-
-            <div class="form-group label-floating">
-                <label class="control-label">تأیید رمز عبور</label>
-                <input class="form-control" placeholder="تکرار رمز عبور" type="password" name="password">
-            </div>
-
-            <div class="form-group label-floating is-select">
-                <label class="control-label">جنسیت</label>
-                <select class="selectpicker form-control" name="sex">
-                    <option value="MAN">مرد</option>
-                    <option value="FEMALE">زن</option>
-                </select>
+                <label for="name" class="w-100 col-form-label me-2">
+                    <input id="name" class="form-control form-login" placeholder="نام خود را وارد کنید" type="text" value="{{old('name')}}"  name="name">
+                </label>
             </div>
 
 
-            <div class="remember">
-                <div class="checkbox">
-                    <label>
-                        <input name="optionsCheckboxes" type="checkbox">
-                        <a href="#">شرایط و ضوابط</a> سایت را قبول میکنم
-                    </label>
-                </div>
+            <div class="form-group ">
+                 @error('email') <small class="alert alert-danger p-1 me-3 mt-4"><i class="fa fa-exclamation-circle"></i> {{$message}} </small>@enderror
+
+                <label for="email" class="w-100 col-form-label me-2">
+                    <input id="email" class="form-control form-login" placeholder="ایمیل خود را وارد کنید" type="email"  value="{{old('email')}}"  name="email">
+                </label>
             </div>
 
 
-            <button type="submit" class="btn btn-lg btn-primary full-width">ثبت نام   </button>
+            <div class="form-group ">
+                 @error('password') <small class="alert alert-danger p-1 me-3 mt-4"><i class="fa fa-exclamation-circle"></i> {{$message}} </small>@enderror
+
+                <label for="password_confirmation" class="w-100 col-form-label me-2">
+                    <input id="password_confirmation" class="form-control form-login" placeholder="رمز عبور خود را وارد کنید"
+                           type="password"
+                           name="password_confirmation">
+                </label>
+            </div>
+            <div class="form-group ">
 
 
-{{--            <div class="or"></div>--}}
-{{--            <a href="#" class="btn btn-lg bg-facebook full-width btn-icon-left"><i class="fa fa-facebook" aria-hidden="true"></i>ورود با فیس بوک</a>--}}
+                <label for="password" class="w-100 col-form-label me-2">
+                    <input id="password" class="form-control form-login" placeholder="رمز عبور خود را تکرار کنید "
+                           type="password"
+                           name="password">
+                </label>
+            </div>
 
-{{--            <a href="#" class="btn btn-lg bg-twitter full-width btn-icon-left"><i class="fa fa-twitter" aria-hidden="true"></i>ورود با توییتر</a>--}}
 
+            <div class="form-group d-flex gap-2">
+                <label  class="control-label me-3 "> جنسیت: </label>
+                <input type="radio" id="MAN" checked name="sex" value="MAN">
+                <label for="MAN">مرد</label>
+                <input type="radio" id="FEMALE" name="sex" value="FEMALE">
+                <label for="FEMALE">زن</label>
+            </div>
 
-            <p>شما یک حساب کاربری دارید؟ <a href="{{route("login.store")}}"> ورود!</a> </p>
+            <button class="btn bg-danger text-light w-75 text-center  mt-4" type="submit">ورود</button>
+
+            <p class="mt-4">شما یک حساب کاربری دارید؟ <a class="text-red" href=" {{route('login.create')}} "> ورود! </a> </p>
         </form>
     </div>
-</div>
+
 
     @endsection
-    </body>

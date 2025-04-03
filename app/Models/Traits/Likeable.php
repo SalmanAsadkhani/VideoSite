@@ -21,30 +21,36 @@ trait Likeable {
 
     public function getlikeCountAttribute()
     {
-        $CacheKeyName = 'Like_Count_For_' . class_basename($this) .'_' . $this->id;
+//        $CacheKeyName = 'Like_Count_For_' . class_basename($this) .'_' . $this->id;
+//
+//       return Cache::remember($CacheKeyName , 30 , function (){
+//
+//        });
 
-       return Cache::remember($CacheKeyName , 30 , function (){
-            return $this->likes()
-                ->where('vote' , 1)
-                ->count();
-        });
+        return $this->likes()
+            ->where('vote' , 1)
+            ->count();
     }
 
     public function getDislikeCountAttribute()
     {
-        $CacheKeyName = 'disLike_Count_For_' . class_basename($this) .'_' . $this->id;
+//        $CacheKeyName = 'disLike_Count_For_' . class_basename($this) .'_' . $this->id;
+//
+//        return Cache::remember($CacheKeyName , 30 , function (){
+//
+//        });
 
-        return Cache::remember($CacheKeyName , 30 , function (){
-            return $this->likes()
-                ->where('vote' , -1)
-                ->count();
-        });
+        return $this->likes()
+            ->where('vote' , -1)
+            ->count();
     }
+
+
 
     public function LikeBy(User  $user)
     {
 
-        if ($this->isLiked($user))
+        if ($this->isLiked($user) )
         {
             return $this->Likes()
                 ->where('vote' , 1)
@@ -63,8 +69,7 @@ trait Likeable {
 
     public function disLikeBy(User  $user)
     {
-        if ($this->isDisLiked($user))
-
+        if ($this->isLiked($user))
         {
             return $this->Likes()
                 ->where('vote' , -1)

@@ -25,7 +25,7 @@ class VerifyEmailController extends Controller
             event(new Verified($request->user()));
         }
 
-        return  redirect()->route('index')->with('alert', __('messages.your_email_was_verified'));
+        return  redirect()->route('index')->with('success', __('messages.your_email_was_verified'));
 
     }
 }

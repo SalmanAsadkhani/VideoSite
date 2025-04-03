@@ -184,171 +184,27 @@
 
 
 <!DOCTYPE html>
-<html lang="fa">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Video Online </title>
+<html lang="fa" dir="rtl">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    @include('partials/header')
 
-    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
-
-</head>
-<body>
-
-<nav class="navbar navbar-expand-lg navbar-dark px-3 mb-3 " dir="rtl">
-    <div class="container-fluid w-75 justify-content-center mt-3">
-        <div class="d-flex gap-3 ">
-
-            <a class="navbar-brand fw-bold" href="{{ route('index')  }}">
-                <img src=" {{ asset('img/logo.png')}} " alt="logo">
-            </a>
-
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+<body dir="rtl">
 
 
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto d-flex gap-2  ">
+    @include('partials/navbar')
 
 
-                    <li class="nav-item ms-2 ">
-                        <a class="nav-link" href="#"  role="button" data-bs-toggle="dropdown">
-                            ویدیوهای جدید
-                        </a>
-
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link " href="#"  role="button" data-bs-toggle="dropdown">
-                            ویدیوهای پرطرفدار
-                        </a>
-
-                    </li>
-
-
-                </ul>
-
-            </div>
-
-        </div>
-
-
-        <div class="d-flex  gap-3">
-
-            <form class="d-flex me-3" id="search" action="#" method="get">
-                <input class="form-control search-box me-2" type="search" name="q" placeholder="جستجو ..." aria-label="Search">
-                <input type="submit" value="Keywords" hidden="hidden" />
-            </form>
-
-
-            @auth()
-                 <div class="sidebar">
-                <div class="dropdown">
-                    <a class="dropdown-toggle d-flex align-items-center gap-2 text-white" data-bs-toggle="dropdown" href="#">
-                        <img src="https://www.gravatar.com/avatar/94e459431e3d23f72ae2a0c541863530" class="profile-img" alt="profile-Image">
-                        <h6 class="ms-2"> {{auth()->user()->name }} </h6>
-                    </a>
-
-
-                    <ul class="dropdown-menu dropdown-menu-dark text-end">
-
-
-                        <li class="profile-container">
-
-                            <div class="position-relative d-inline-block">
-                                <img id="profilePic" src="https://www.gravatar.com/avatar/94e459431e3d23f72ae2a0c541863530" style="border-radius: 50%; width: 5rem" alt="profile-logo">
-
-                                <label for="fileInput">
-                                    <span class="camera-icon">
-                                        <i class="fas fa-camera"></i>
-                                    </span>
-                                </label>
-
-                                <input type="file" id="fileInput" accept="image/*">
-
-                            </div>
-                            <h6 class="mt-4 text-lighter"> {{auth()->user()->name}} </h6>
-                        </li>
-
-
-
-                        <li class=" menu-item  dropdown-item">
-                            <a href="#" > <i class="fas fa-user"></i> تغییر حساب  کاربری شما </a>
-                        </li>
-
-
-                        <div class="border-show"></div>
-
-                        <li class="menu-item dropdown-item">
-                            <a href="#"> <i class="fa fa-comments"></i> نظرات من</a>
-                        </li>
-
-                        <div class="border-show"></div>
-
-                        <li class="menu-item dropdown-item">
-                            <a href="#"><i class="fa fa-bookmark"></i> نشان شده ها </a>
-                        </li>
-
-                        <div class="border-show"></div>
-
-                        <li class="logout dropdown-item">
-                            <a href=" {{route('logout')}} ">  <i class="fas fa-sign-out-alt"></i> خروج از حساب کاربری</a>
-                        </li>
-
-                    </ul>
-                </div>
-            </div>
-            @endauth
-
-
-            @guest()
-                <div class="gap-4 d-flex">
-                    <a href="#" class="btn btn-outline-light">ورود</a>
-                    <a href="#" class="btn btn-primary">ثبت نام</a>
-                </div>
-            @endguest
-
-        </div>
-    </div>
-
-</nav>
-
+<div class=" w-75 d-flex justify-content-evenly ">
+    <x-alert/>
+</div>
 
 
 @yield('content')
 
-
-
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="{{ asset('js/main.js') }}"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-<script>
-    var swiper = new Swiper(".mySwiper", {
-        slidesPerView: 4,
-        spaceBetween: 20,
-        loop: true,
-        navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
-        },
-        breakpoints: {
-            1200: { slidesPerView: 4 },
-            992: { slidesPerView: 3 },
-            768: { slidesPerView: 2 },
-            576: { slidesPerView: 1 },
-        }
-    });
-</script>
 
 </body>
 </html>

@@ -6,8 +6,10 @@ use App\Events\VideoCreated;
 use App\Listeners\ProcessVideo;
 use App\Listeners\SendEmail;
 use App\Models\Like;
+use App\Models\User;
 use App\Models\Video;
 use App\Observers\LikeObserver;
+use App\Observers\UserObserver;
 use App\Observers\VideoObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -40,6 +42,7 @@ class EventServiceProvider extends ServiceProvider
     {
         Like::observe(LikeObserver::class);
         Video::observe(VideoObserver::class);
+        User::observe(UserObserver::class);
     }
 
     public function shouldDiscoverEvents()

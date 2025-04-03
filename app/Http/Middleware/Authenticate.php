@@ -16,7 +16,7 @@ class Authenticate extends Middleware
     {
         if (! $request->expectsJson()) {
 
-            return  redirect()->route('login.create')->with('alert', __('messages.please_verify_your_email'));
+            return  redirect('login.create')->with('alert', __('messages.please_verify_your_email'));
 
         }
     }

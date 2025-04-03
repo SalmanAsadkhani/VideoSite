@@ -50,14 +50,19 @@ class RouteServiceProvider extends ServiceProvider
 
 
         Route::bind('likeable_id' , function ($value , $route) {
+
             $name_model = 'App\Models\\'. ucfirst($route->parameter('likeable_type'));
+
             $getKey = (new $name_model)->getRouteKeyName();
+
 
           return $name_model::where($getKey , $route->parameter('likeable_id'))->firstOrFail();
         });
 
 
     }
+
+
 
     /**
      * Configure the rate limiters for the application.

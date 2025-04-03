@@ -18,6 +18,31 @@ class CommentController extends Controller
             'comment' => Request('comment')
         ]);
 
-        return back()->with('alert', __('messages.your_comment_was_successfully'));
+        return back()->with('success', __('messages.your_comment_was_successfully'));
    }
+
+
+    public function show()
+    {
+        $comments = Comment::where('user_id', Auth::id())->with('video')->simplePaginate(10);
+
+
+        return view('videos.comments' , compact('comments') );
+   }
+
+
+    public function latestComments()
+    {
+        $comments = Comment::where('user_id', Auth::id())->with('video')->latest()->simplePaginate(6);
+
+        return view('videos.comments' , compact('comments'));
+    }
+
+    public function oldestComments()
+    {
+        $comments = Comment::where('user_id', Auth::id())->with('video')->oldest()->simplePaginate(6);
+
+        return view('videos.comments' , compact('comments'));
+    }
+
 }

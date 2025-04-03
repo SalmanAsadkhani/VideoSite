@@ -30,7 +30,7 @@ class PanelControllers extends Controller
         $users = User::withCount('videos')->orderBy('videos_count', 'desc')->get();
 
 
-        return view('panel-admin.home', compact('topVideos','oldVideos' , 'users'));
+        return view('panel-admin.home', compact('topVideos', 'oldVideos', 'users'));
     }
 
 
@@ -39,10 +39,10 @@ class PanelControllers extends Controller
 
         $registeredUsers = User::orderBy('created_at', 'desc')->get();
 
-        $newVideos =  Video::orderBy('created_at', 'desc')->simplePaginate(10);
+        $newVideos = Video::orderBy('created_at', 'desc')->simplePaginate(10);
 
 
-        return view('panel-admin.category-videos' , compact('registeredUsers' , 'newVideos'));
+        return view('panel-admin.category-videos', compact('registeredUsers', 'newVideos'));
     }
 
 
@@ -51,17 +51,18 @@ class PanelControllers extends Controller
         $videos = Video::orderBy('created_at', 'desc')->simplePaginate(12);
 
 
-        return view('panel-admin.videos.show-all' , compact('videos'));
+        return view('panel-admin.videos.show-all', compact('videos'));
     }
 
     public function show(Video $video)
     {
-        return view('panel-admin.videos.show' , compact('video'));
+        return view('panel-admin.videos.show', compact('video'));
     }
 
     public function showDetails()
-    {;
-        $videos = Video::orderBy('id' , 'desc')->simplePaginate(10);
+    {
+        ;
+        $videos = Video::orderBy('id', 'desc')->simplePaginate(10);
 
         return view('panel-admin.videos.show-details', compact('videos'));
     }
@@ -69,29 +70,29 @@ class PanelControllers extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('panel-admin.videos.create' , compact('categories'));
+        return view('panel-admin.videos.create', compact('categories'));
     }
 
     public function store(StoreVideoRequest $request)
     {
         (new VideoService())->create($request->user(), $request->all());
 
-        return redirect()->route('panel.show.all')->with('alert' , __('messages.success'));
+        return redirect()->route('panel.show.all')->with('alert', __('messages.success'));
     }
 
     public function showEdit()
     {
-        $videos = Video::orderBy('id' , 'desc')->simplePaginate(20);
+        $videos = Video::orderBy('id', 'desc')->simplePaginate(20);
         $categories = Category::all();
 
-        return view('panel-admin.videos.show-video-edit' , compact('videos' , 'categories'))
-            ->with('alert' , __('messages.edit-video-success'));
+        return view('panel-admin.videos.show-video-edit', compact('videos', 'categories'))
+            ->with('alert', __('messages.edit-video-success'));
     }
 
     public function edit(Video $video)
     {
         $categories = Category::all();
-        return view('panel-admin.videos.edit', compact( 'video' , 'categories'));
+        return view('panel-admin.videos.edit', compact('video', 'categories'));
     }
 
     public function update(UpdateVideoRequest $request, Video $video)
@@ -101,53 +102,39 @@ class PanelControllers extends Controller
         return redirect()->route('panel.show.all')->with('alert', __('messages.video_edited'));
     }
 
-//    public function destroy(Video $video)
-//    {
-//
-////        $video->delete();
-////        return back()->with('alert' , __('messages.video-delete-success'));
-//    }
-
-    public function destroy($slug)
-    {
-        $video = Video::where('slug', $slug)->first();
-
-        if (!$video) {
-            return response()->json(['success' => false, 'message' => 'ویدیو یافت نشد!']);
-        }
-
-        $video->delete(); // حذف ویدیو
-
-        return response()->json(['success' => true, 'message' => 'ویدیو با موفقیت حذف شد']);
-
-}
-
-
-
-
-
-
 
 
 
     // ajax
-    public function changeStatus(Request $request)
+    public function status(Request $request  )
     {
 
-        $request->validate([
-            'video_id' => 'required|exists:videos,id',
-            'status' => 'required|in:1,2,3'
+        $video = Video::all()->find(['id' => $request->get('video_id')])->firstOrFail();
+
+
+        if (!$video) {
+            return response()->json([
+                'success' => false,
+            ]);
+        }
+
+        $video->update([
+            'status' => $request->status
         ]);
 
-        $video = Video::find($request->video_id);
-        $video->status = $request->status;
-        $video->save();
+        return response()->json(['success' => true , 'status' => $video->status  , 'error' =>  "خطایی رخ داده است."]);
 
-        return response()->json(['message' => 'وضعیت با موفقیت تغییر یافت.']);
     }
 
+    public function delete(Request $request)
+    {
+        $video = Video::all()->find(['id' => $request->get('video_id')])->firstOrFail();
 
 
+        $video->delete();
 
+        return response()->json(['success' => true , 'delete' => 'ویدیو با موفقیت حذف گردید']) ;
+
+    }
 
 }

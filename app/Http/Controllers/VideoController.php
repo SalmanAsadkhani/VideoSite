@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateVideoRequest;
 use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Video;
+use App\Models\VideoRating;
 use App\Services\FFmpegAdapter;
 use App\Services\VideoService;
 use Illuminate\Http\Request;
@@ -19,10 +20,13 @@ class VideoController extends Controller
 
 
 
-
-
     public function create()
     {
+        if (!auth()->check())
+        {
+            return redirect()->route('login.create');
+        }
+
         $categories = Category::all();
         return view('videos.create', compact('categories'));
     }
@@ -32,12 +36,14 @@ class VideoController extends Controller
 
         (new VideoService())->create($request->user(), $request->all());
 
-        return redirect()->route('index')->with('alert', __('messages.success'));
+        return redirect()->route('index')->with('success', __('messages.success'));
     }
 
-    public function show( Video $video)
+    public function show( Video $video , Comment $comment  )
     {
-        return view('videos.show', compact('video' ));
+        $videosRating = Video::with('ratings')->get();
+
+        return view('videos.show', compact('video' , 'comment' , 'videosRating' ));
     }
 
     public function edit(Video $video)
@@ -53,6 +59,34 @@ class VideoController extends Controller
     {
         (new VideoService())->update($video, $request->all());
 
-        return redirect()->route('panel.show.all')->with('alert', __('messages.video_edited'));
+        return redirect()->route('panel.show.all')->with('success', __('messages.video_edited'));
     }
+
+
+    public function popular(Request $request)
+    {
+        $videos = Video::withCount(['likes as vote' => function ($query) {
+            $query->where('vote', 1);
+        }])->orderBy('vote', 'desc')->search($request->all())->paginate(10);
+
+
+
+
+        return view('videos.popular', compact('videos'));
+    }
+
+    public function recommended(Request $request , Video $video)
+    {
+        $videos = Video::search($request->all())->simplePaginate(12);
+        return view('videos.recommended', compact('videos'));
+    }
+
+    public function latest(Request $request)
+    {
+        $newVideos =  Video::orderBy('created_at', 'desc')->search($request->all())->simplePaginate(12);
+
+        return view('videos.latest', compact('newVideos'));
+    }
+
+
 }

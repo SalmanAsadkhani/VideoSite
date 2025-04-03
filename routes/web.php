@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\LikeController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\VideoRatingController;
 use App\Models\Video;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
@@ -31,7 +33,7 @@ Route::get('/', [IndexController::class, 'index'])
 
 
 Route::get('/videos/create', [VideoController::class, 'create'])
-    ->middleware('VerifyEmail')
+    ->middleware(['VerifyEmail'])
     ->name('videos.create');
 
 Route::post('/videos', [VideoController::class, 'store'])
@@ -39,31 +41,92 @@ Route::post('/videos', [VideoController::class, 'store'])
 
 
 Route::get('/videos/{video}', [VideoController::class, 'show'])
-
     ->name('videos.show');
 //    ->middleware('admin');
 
 Route::get('/videos/{video}/edit', [VideoController::class, 'edit'])
+    ->middleware('auth')
     ->name('videos.edit');
 
 Route::post('/videos/{video}', [VideoController::class, 'update'])
+    ->middleware('auth' )
     ->name('videos.update');
+
+Route::get('popular' , [VideoController::class, 'popular'])
+    ->name('videos.popular');
+
+Route::get('recommended' , [VideoController::class, 'recommended'])
+    ->name('videos.recommended');
+
+Route::get('latest' , [VideoController::class, 'latest'])
+    ->name('videos.latest');
+
+
 
 Route::get('/categories/{category:slug}/videos', [CategoryVideoController::class, 'index'])
     ->name('categories.videos.index');
 
+
+
+
+    // comments
 Route::post('/videos/{video}/comments', [\App\Http\Controllers\CommentController::class, 'store'])
+    ->middleware('auth')
     ->name('comments.store');
 
+Route::get('/my-comments' , [CommentController::class, 'show'])
+    ->middleware('auth')
+    ->name('comments.show');
+
+Route::get('latest/comments' , [CommentController::class, 'latestComments'])
+    ->name('latest.comments');
+
+Route::get('oldest/comments' , [CommentController::class, 'oldestComments'])
+    ->name('oldest.comments');
 
 
+
+/* like*/
 Route::get('{likeable_type}/{likeable_id}/like' , [LikeController::class, 'store'])
     ->name('like.store');
 
 Route::get('{likeable_type}/{likeable_id}/dislike' , [DisLikeController::class, 'store'])
     ->name('dislike.store');
 
-//
+
+/* favorite*/
+    //ajax
+Route::post('/favorites' , [\App\Http\Controllers\FavoriteController::class, 'store'])
+    ->middleware('auth')
+    ->name('favorites.store');
+
+Route::get('favorites' , [\App\Http\Controllers\FavoriteController::class, 'show'])
+    ->name('videos.favorites');
+
+
+
+/* profile*/
+Route::group(['prefix' => 'profile'], function () {
+    Route::get('/' , [ProfileController::class, 'profile'])
+        ->name('profile');
+
+    Route::post('information/{user}' , [ProfileController::class, 'information'])
+        ->name('profile.update.information');
+
+    Route::post('/password/{user}' , [ProfileController::class, 'password'])
+        ->name('profile.update.password');
+
+    Route::get('/my-videos' , [ProfileController::class, 'myVideos'])
+        ->name('profile.my-videos');
+});
+
+
+/* point user*/
+
+Route::post('/rate-video/{video:id}', [VideoRatingController::class, 'store'])
+    ->middleware('auth')
+    ->name('rate.video');
+
 //Route::get('cache' , function (){
 //    $value = Cache::remember('video-count', 5, function () {
 //         return Video::all()->count();
@@ -73,6 +136,8 @@ Route::get('{likeable_type}/{likeable_id}/dislike' , [DisLikeController::class, 
 //});
 
 require __DIR__ . '/auth.php';
+
+
 
 
 
@@ -111,14 +176,16 @@ Route::group([ 'prefix' => 'dashboard', 'middleware' => ['auth', 'admin']], func
     Route::post('videos/{video}' , [\App\Http\Controllers\panel\PanelControllers::class, 'update'])
         ->name('panel.video.update');
 
-    Route::delete('destroy/{video}' , [\App\Http\Controllers\panel\PanelControllers::class, 'destroy'])
+
+
+    //ajax
+   Route::post('{video}/status' , [\App\Http\Controllers\panel\PanelControllers::class, 'status'])
+        ->name('panel.video.status');
+
+    Route::delete('delete/{video}' ,[\App\Http\Controllers\panel\PanelControllers::class , 'delete'])
         ->name('panel.video.destroy');
 
 
-
-
-
-    Route::post('videos/change-status', [\App\Http\Controllers\panel\PanelControllers::class, 'changeStatus'])->name('videos.changeStatus');
 
 });
 //

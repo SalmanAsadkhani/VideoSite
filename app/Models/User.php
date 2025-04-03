@@ -24,7 +24,8 @@ class User extends Authenticatable
         'name',
         'email',
         "sex",
-        'password'
+        'password',
+        'avatar'
     ];
 
     /**
@@ -57,10 +58,23 @@ class User extends Authenticatable
         return $this->hasMany(Video::class);
     }
 
+    public function favorites()
+    {
+        return $this->hasMany(Favorite::class);
+    }
+
+
     public function getCreatedAtAttribute($value)
     {
         return (new Verta($value))->formatDifference();
     }
+
+    public function getAvatarAttribute()
+    {
+        return '/storage/' . $this->attributes['avatar'];
+    }
+
+
 
 
 

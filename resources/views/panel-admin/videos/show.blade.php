@@ -69,17 +69,6 @@
                                                         {{$video->likeCount}} <i class="fa fa-thumbs-up "></i></a></li>
                                             </ul>
 
-                                            <div class="stars-rating d-flex align-items-center">
-                                                <span class="star-icon las la-star active"></span>
-                                                <span class="star-icon las la-star active"></span>
-                                                <span class="star-icon las la-star active"></span>
-                                                <span class="star-icon las la-star active"></span>
-                                                <span class="star-icon las la-star-half-alt active"></span>
-                                                <span class="stars-rating__point">4.9</span>
-                                                <span class="stars-rating__review"></span>
-
-                                            </div>
-
                                         </div>
 
 

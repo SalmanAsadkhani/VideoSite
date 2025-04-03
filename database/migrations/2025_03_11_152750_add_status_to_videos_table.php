@@ -14,8 +14,7 @@ class AddStatusToVideosTable extends Migration
     public function up()
     {
         Schema::table('videos', function (Blueprint $table) {
-            $table->tinyInteger('status')->default(0)
-                ->after('length');
+            $table->enum('status', ['allow', 'deny' ])->default('allow')->after('length');
         });
     }
 

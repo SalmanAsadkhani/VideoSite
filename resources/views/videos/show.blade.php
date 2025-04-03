@@ -145,67 +145,91 @@
             <video controls preload="auto" width="100%" height="100%">
                 <source src="{{ $video->video_url }}" type="video/mp4">
             </video>
-
-            <div class="d-flex justify-content-between align-items-center">
-                <div class="row gap-2" style=" max-width: 46.1rem; line-height: 1.5rem;">
-                    <h6 class="text-blue me-2 mt-3"> {{$video->name}} </h6>
-                    <div class="owner d-flex align-items-center gap-1 align-self-center">
-                        <img src="https://www.gravatar.com/avatar/94e459431e3d23f72ae2a0c541863530" alt="">
-                        <p class="m-0 text-red"> {{$video->user->name}} </p>
-                    </div>
-                </div>
-
-                <div class="group-item text-center">
-
-                    <div class="btn btn-download">
-                        <i class="fa fa-download" aria-hidden="true"></i>
-                        <span>دانلود</span>
-                    </div>
-
-                </div>
-            </div>
-
-
-            <div class="d-flex justify-content-between align-items-center">
-
-                <div class="user-point ">
-
-                    <div class="point">
-                        <span class="text-light small">5/</span>
-                        <span class="point active">4.6</span>
-                    </div>
-                    <div>
-                        <span>امتیاز </span> <span class="text-red">کاربران</span>
-                    </div>
-                </div>
-
-                <div class="group-item text-center">
-
-                    <div class="likes">
-
-                        <div class="dislike row text-center ">
-                            <a href="#">
-                                <i class="fa fa-thumbs-down fa-lg " aria-hidden="true"></i>
-                            </a>
-                            <span> 0 </span>
-                        </div>
-
-                        <div class="like row text-center ">
-                            <a href="#">
-                                <i class="fa fa-thumbs-up fa-lg " aria-hidden="true"></i>
-                            </a>
-                            <span> 1 </span>
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
-
         </div>
     </div>
 
+    <div class=" row">
+
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="row gap-2" style=" max-width: 46.1rem; line-height: 1.5rem;">
+                <h6 class="text-blue me-2 mt-3"> {{$video->name}} </h6>
+                <div class="owner d-flex align-items-center gap-1 align-self-center">
+                    <img src="https://www.gravatar.com/avatar/94e459431e3d23f72ae2a0c541863530" alt="">
+                    <p class="m-0 text-red"> {{$video->user->name}} </p>
+                </div>
+            </div>
+
+            <div class="group-item text-center">
+
+
+                <div class="btn btn-download">
+                    <i class="fa fa-download" aria-hidden="true"></i>
+                    <span>دانلود</span>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="d-flex justify-content-between align-items-center">
+
+            <div class="user-point ">
+
+                <div class="d-flex mt-2">
+                    <a  class="rate-star text-lighter" data-rating="1">  <i class="fa-solid fa-star" style="color: yellow"></i> 1 </a>
+                    <a  class="rate-star text-lighter" data-rating="2">  <i class="fa-solid fa-star" style="color: yellow"></i> 2 </a>
+                    <a  class="rate-star text-lighter" data-rating="3">  <i class="fa-solid fa-star" style="color: yellow"></i> 3 </a>
+                    <a  class="rate-star text-lighter" data-rating="4">  <i class="fa-solid fa-star" style="color: yellow"></i> 4 </a>
+                    <a  class="rate-star text-lighter" data-rating="5">  <i class="fa-solid fa-star" style="color: yellow"></i> 5 </a>
+                </div>
+
+                <div class="point">
+                    <span class="text-light small">5/</span>
+                    <span class="video-rating"> {{ number_format($video->averageRating(), 1) }} </span>
+                </div>
+
+
+                <div>
+                    <span>امتیاز </span> <span class="text-red">کاربران</span>
+                </div>
+            </div>
+
+            <div class="group-item text-center">
+
+                <div class="likes">
+
+                    <div class="dislike row text-center ">
+                        <a href="  {{route('dislike.store' , ['likeable_type' => 'video' , 'likeable_id' => $video ])}}  ">
+                            <i class="fa fa-thumbs-down fa-lg" aria-hidden="true"></i>
+                        </a>
+                        <span> {{$video->dis_like_Count}} </span>
+                    </div>
+
+
+
+                    <div class="like row text-center ">
+                        <a href=" {{route('like.store' , ['likeable_type' => 'video' , 'likeable_id' => $video ])}}  ">
+                            <i class="fa fa-thumbs-up fa-lg " aria-hidden="true"></i>
+                        </a>
+                        <span>{{$video->like_count}} </span>
+                    </div>
+
+
+
+
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+
     <div class="glow-border"></div>
+
+
+
 
 
 {{--        show videos--}}
@@ -262,15 +286,18 @@
 
         @auth()
             <!--            insert comment-->
-            <form  class="d-flex mt-4  " style="height: 2.8rem;" method="post" action="{{route("comments.store" ,$video)}}">
+            @can('create' , [\App\Models\Comment::class , $video])
+            <form  class="d-flex mt-4 position-relative " style="height: 2.8rem;" method="post" action="{{route("comments.store" ,$video)}}">
                 @csrf
                 <label for="comment"></label><textarea class="send-comment" name="comment"   id="comment" placeholder="دیدگاهتان را بنویسید ..." required></textarea>
                 <button  class="btn-submit">انتشار</button>
             </form>
+            @endcan
+
         @endauth
 
 
-
+        {{--sort--}}
         <div  class="d-flex justify-content-around align-items-center mt-5">
 
             <div>
@@ -293,6 +320,7 @@
         </div>
 
 
+
         <!--        comment-->
         <div class="comments">
 
@@ -312,10 +340,12 @@
 
                     </div>
 
+
+
                     <div class="group-item ">
 
                         <div class="date ">
-                            {{$comment->user->name}}
+                            {{$comment->created_at_inhumas}}
                         </div>
 
                         <div class="likes">
@@ -324,15 +354,21 @@
                                 <a href=" {{route('dislike.store' , ['likeable_type' => 'comment' , 'likeable_id'  => $comment])}} ">
                                     <i class="fa fa-thumbs-down fa-lg" aria-hidden="true"></i>
                                 </a>
-                                <span> {{$comment->disLikeCount}}  </span>
+                                <span> {{$comment->dis_Like_Count}}  </span>
                             </div>
+
+
 
                             <div class="like row text-center ">
                                 <a href=" {{route('like.store' , ['likeable_type' => 'comment' , 'likeable_id'  => $comment])}}  ">
                                     <i class="fa fa-thumbs-up fa-lg " aria-hidden="true"></i>
                                 </a>
-                                <span> {{$comment->likeCount}} </span>
+                                <span> {{$comment->like_Count}} </span>
                             </div>
+
+
+
+
 
                         </div>
 
@@ -355,11 +391,48 @@
 
 
 
+<script>
+    $(document).ready(function () {
+        $('.rate-star').click(function (e){
+            e.preventDefault();
+
+            let rating = $(this).data('rating');
+
+            let isAuthenticated = $('meta[name="is-auth"]').attr('content');
+            if (isAuthenticated === 'false') {
+                window.location.href = '/login';
+                return;
+            }
+
+
+            $.ajax({
+
+                url: '{{route('rate.video' , $video->id)}}',
+                method: 'POST',
+
+                data: {
+                    rating: rating,
+                    _token: "{{ csrf_token() }}"
+                },
+
+
+                success: function (response) {
+                    alert("امتیاز شما ثبت شد!");
+                    $(".video-rating").text(response.new_rating);
+                },
+                error: function (xhr) {
+                    console.log(xhr.responseJSON);
+                    alert("خطا در ارسال امتیاز!");
+                }
 
 
 
+            });
 
 
+        })
+    });
+</script>
 
 
 
