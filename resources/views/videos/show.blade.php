@@ -298,7 +298,7 @@
 
 
         {{--sort--}}
-        <div  class="d-flex justify-content-around align-items-center mt-5">
+        <div  class="d-flex flex-wrap  gap-2 justify-content-around align-items-center mt-5">
 
             <div>
                 <h5> مرتب سازی:</h5>

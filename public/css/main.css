@@ -210,7 +210,7 @@ linear-gradient(to right, transparent, #d32f2f, transparent);
     text-align: center;
 }
 .btn-download{
-    width: 10.5rem;
+    max-width: 10.5rem;
     background: #DF2144;
     color: white;
     font-weight: 400;
@@ -581,6 +581,7 @@ linear-gradient(to right, transparent, #d32f2f, transparent);
     .menu-right{
         justify-content: space-between;
         width: 100%;
+        padding: 2rem !important;
     }
     .menu-right{
         width: 100%;
