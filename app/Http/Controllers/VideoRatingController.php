@@ -13,6 +13,7 @@ class VideoRatingController extends Controller
     {
 
 
+
         $request->validate([
             'rating' => 'required|integer|min:1|max:5',
         ]);
@@ -24,6 +25,13 @@ class VideoRatingController extends Controller
 
 
         $averageRating = VideoRating::where('video_id', $video->id)->avg('rating');
+
+
+
+         $rating= $video->update([
+            'rating' => $video->averageRating(),
+        ]);
+
 
         return response()->json(['success' => true, 'new_rating' => round($averageRating, 1)]);
     }

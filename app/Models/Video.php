@@ -27,7 +27,8 @@ class Video extends Model
         'slug',
         'thumbnail',
         'category_id',
-        'status'
+        'status',
+        'rating'
     ];
 
     protected $hidden =  ['path' , 'thumbnail'];
@@ -97,8 +98,14 @@ class Video extends Model
 
     public function getVideoThumbnailAttribute()
     {
-        return   Storage::url($this->thumbnail);
 
+        return '/storage/' . $this->thumbnail;
+
+    }
+
+    public function getVideoDownloaderAttribute()
+    {
+        return  '/storage/' .$this->path;
     }
 
     public function scopeFilters(Builder $builder , array $params)

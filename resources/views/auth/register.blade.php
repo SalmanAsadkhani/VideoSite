@@ -1,6 +1,6 @@
 
-    @extends("auth-layout")
-    @section('content')
+@extends("auth-layout")
+@section('content')
 
     <div class="container row d-flex justify-content-center mt-5 bg-dark p-3" style="max-width:40rem ; margin: auto; border-radius: 1rem ">
         <div class="login-header d-flex justify-content-between align-items-center mt-2 w-100 ">
@@ -16,7 +16,7 @@
             @csrf
 
             <div class="form-group ">
-                 @error('name') <small class="alert alert-danger p-1 me-3 mt-4"><i class="fa fa-exclamation-circle"></i> {{$message}} </small>@enderror
+                @error('name') <small class="alert alert-danger p-1 me-3 mt-4"><i class="fa fa-exclamation-circle"></i> {{$message}} </small>@enderror
 
                 <label for="name" class="w-100 col-form-label me-2">
                     <input id="name" class="form-control form-login" placeholder="نام خود را وارد کنید" type="text" value="{{old('name')}}"  name="name">
@@ -25,7 +25,7 @@
 
 
             <div class="form-group ">
-                 @error('email') <small class="alert alert-danger p-1 me-3 mt-4"><i class="fa fa-exclamation-circle"></i> {{$message}} </small>@enderror
+                @error('email') <small class="alert alert-danger p-1 me-3 mt-4"><i class="fa fa-exclamation-circle"></i> {{$message}} </small>@enderror
 
                 <label for="email" class="w-100 col-form-label me-2">
                     <input id="email" class="form-control form-login" placeholder="ایمیل خود را وارد کنید" type="email"  value="{{old('email')}}"  name="email">
@@ -34,7 +34,7 @@
 
 
             <div class="form-group ">
-                 @error('password') <small class="alert alert-danger p-1 me-3 mt-4"><i class="fa fa-exclamation-circle"></i> {{$message}} </small>@enderror
+                @error('password') <small class="alert alert-danger p-1 me-3 mt-4"><i class="fa fa-exclamation-circle"></i> {{$message}} </small>@enderror
 
                 <label for="password_confirmation" class="w-100 col-form-label me-2">
                     <input id="password_confirmation" class="form-control form-login" placeholder="رمز عبور خود را وارد کنید"
@@ -68,4 +68,4 @@
     </div>
 
 
-    @endsection
+@endsection

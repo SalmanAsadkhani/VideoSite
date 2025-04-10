@@ -11,6 +11,7 @@ use App\Models\VideoRating;
 use App\Services\FFmpegAdapter;
 use App\Services\VideoService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 
@@ -65,14 +66,12 @@ class VideoController extends Controller
 
     public function popular(Request $request)
     {
-        $videos = Video::withCount(['likes as vote' => function ($query) {
-            $query->where('vote', 1);
-        }])->orderBy('vote', 'desc')->search($request->all())->paginate(10);
-
-
-
+        $videos = Video::orderBy('rating', 'desc')
+            ->search($request->all())
+            ->simplePaginate(12);
 
         return view('videos.popular', compact('videos'));
+
     }
 
     public function recommended(Request $request , Video $video)
@@ -87,6 +86,9 @@ class VideoController extends Controller
 
         return view('videos.latest', compact('newVideos'));
     }
+
+
+
 
 
 }

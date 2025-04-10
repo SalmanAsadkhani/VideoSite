@@ -3,9 +3,6 @@
 
     <div class="container  mt-5">
 
-        <div class="w-50 p-0 m-0 m-5">
-            <x-alert/>
-        </div>
 
 
         <div class="profile d-flex justify-content-start gap-5">
@@ -48,11 +45,16 @@
                         @error('name') <small class="alert alert-danger p-1 me-3 mb-4"><i class="fa fa-exclamation-circle"></i> {{$message}} </small>@enderror
                     </div>
 
-                    <div class="d-flex flex-column align-items-start gap-1" >
+                    <div class="d-flex flex-column align-items-start gap-1 position-relative orderDatatable-status" >
                         <label for="email"> ایمیل </label>
                         <input id="email" class="form form-control" type="text" name="email" placeholder="ایمیل" value="{{ auth()->user()->email }}" >
-
                         @error('email') <small class="alert alert-danger p-1 me-3 mb-4"><i class="fa fa-exclamation-circle"></i> {{$message}} </small>@enderror
+
+                        <span class="{{auth()->user()->email_verified_at ? 'bg-success text-light p-1 small rounded-circle' : 'bg-danger text-warning p-1 small rounded-circle'}} position-absolute" style="left: 1rem"> {{auth()->user()->email_verified_at ? 'تایید شده' : 'تایید نشده'}}  </span>
+                        @if(auth()->user()->email_verified_at == null)
+                            <a  class="btn btn-sm text-light btn-success  position-absolute" href="{{route('verification.notice')}}" style="    left: -8.3rem; top: 2.2rem;">تایید کردن ایمیل</a>
+                        @endif
+
                     </div>
 
                     <div class="d-flex flex-column align-items-start gap-3" style="max-width: 20rem">

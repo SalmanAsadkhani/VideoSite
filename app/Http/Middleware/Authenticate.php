@@ -7,17 +7,18 @@ use Illuminate\Auth\Middleware\Authenticate as Middleware;
 class Authenticate extends Middleware
 {
     /**
-     * Get the path the user should be redirected to when they are not authenticated.
+     * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return string|null
+     * @param \Illuminate\Http\Request $request
+     * @param \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse) $next
+     * @return string
      */
+
     protected function redirectTo($request)
     {
-        if (! $request->expectsJson()) {
-
-            return  redirect('login.create')->with('alert', __('messages.please_verify_your_email'));
-
+        if (!$request->expectsJson()) {
+            return route('login.create');
         }
+
     }
 }

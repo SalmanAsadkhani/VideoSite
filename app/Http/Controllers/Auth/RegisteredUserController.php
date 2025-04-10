@@ -37,13 +37,11 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'sex' => ['required'],
         ]);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'sex' => $request->sex,
             'password' => Hash::make($request->password),
         ]);
 
@@ -51,8 +49,6 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME)->with('success', __('messages.register.success'));
-
+        return redirect(RouteServiceProvider::HOME);
     }
-
 }

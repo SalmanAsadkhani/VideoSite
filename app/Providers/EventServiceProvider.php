@@ -40,7 +40,7 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Like::observe(LikeObserver::class);
+//        Like::observe(LikeObserver::class);
         Video::observe(VideoObserver::class);
         User::observe(UserObserver::class);
     }

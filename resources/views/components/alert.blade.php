@@ -1,8 +1,8 @@
 
 
-<div id="alert" class="position-absolute w-100">
+<div id="alert" class="position-absolute " style="right: 20rem">
     @if (session('success'))
-        <div class="alert alert-success w-50 d-flex justify-content-center me-5">
+        <div class="alert alert-success  d-flex justify-content-center me-5">
             {{ session('success') }}
         </div>
     @endif

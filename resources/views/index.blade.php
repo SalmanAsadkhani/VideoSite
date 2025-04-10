@@ -11,12 +11,15 @@
     </div>
 
     <div class="movies d-flex  flex-wrap justify-content-around align-items-center gap-3">
-        @foreach($RecommendedVideos as $video)
-            <x-video-box  :video="$video" />
 
-
-
-        @endforeach
+            @if($RecommendedVideos->count())
+                @foreach($RecommendedVideos as $video)
+                    <x-video-box  :video="$video" />
+                @endforeach
+            @else
+                <div class="text-warning "> هیچ ویدیویی مطابق با جستجوی شما یافت نشد</div>
+                <span><a class="text-danger" href="{{route('index')}}">بازگشت به صفحه اصلی</a></span>
+            @endif
     </div>
 
     <div class="text-center mt-4">
@@ -41,10 +44,15 @@
     </div>
 
     <div class="movies d-flex  flex-wrap justify-content-around align-items-center gap-3">
-        @foreach($topVideos as $video)
+        @if($topVideos->count())
+            @foreach($topVideos as $video)
 
-            <x-video-box  :video="$video"/>
-        @endforeach
+                <x-video-box  :video="$video"/>
+            @endforeach
+        @else
+                <div class="text-warning "> هیچ ویدیویی مطابق با جستجوی شما یافت نشد</div>
+                <span><a class="text-danger" href="{{route('index')}}">بازگشت به صفحه اصلی</a></span>
+        @endif
     </div>
 
     <div class="text-center mt-4">
@@ -78,9 +86,16 @@
     </div>
 
     <div class="movies d-flex  flex-wrap justify-content-around align-items-center gap-3">
-        @foreach($LatestVideos as $video)
-            <x-video-box  :video="$video"/>
-        @endforeach
+
+            @if($LatestVideos->count())
+                @foreach($LatestVideos as $video)
+                    <x-video-box  :video="$video"/>
+                @endforeach
+            @else
+                <div class="text-warning "> هیچ ویدیویی مطابق با جستجوی شما یافت نشد</div>
+                <span><a class="text-danger" href="{{route('index')}}">بازگشت به صفحه اصلی</a></span>
+            @endif
+
     </div>
 
     <div class="text-center mt-4">

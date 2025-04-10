@@ -20,6 +20,6 @@ class CheckVerifyEmail
         if ($request->user() && $request->user()->hasVerifiedEmail()) {
             return $next($request);
         }
-        return redirect()->route('index')->with('alert', __('messages.please_verify_your_email'));
+        return redirect()->route('index')->with('success', __('messages.please_verify_your_email'));
     }
 }

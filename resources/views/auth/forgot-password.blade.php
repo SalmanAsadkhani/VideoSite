@@ -1,25 +1,29 @@
 @extends('auth-layout')
 @section('content')
-    <div id="log-in" class="site-form log-in-form">
-
-        <div id="log-in-head">
-            <h1>بازیابی رمز عبور</h1>
-            <div id="logo"><a href="{{ route('index') }}"><img src="img/logo.png" alt=""></a></div>
+    <div class="container row d-flex justify-content-center mt-5 bg-dark p-4" style="max-width:40rem ; margin: auto; border-radius: 1rem ">
+        <div class="login-header d-flex justify-content-between align-items-center w-100 ">
+            <a href="{{route('index')}}"><img src=" {{asset('img/logo.png')}} " alt="logo"></a>
+            <h6 class="text-lighter">بازیابی رمز عبور</h6>
         </div>
 
-        <div class="form-output">
-            <x-validation-errors></x-validation-errors>
-            <form method="POST" action="{{ route('password.email') }}">
-                @csrf
-                <div class="form-group label-floating">
-                    <label class="control-label">ایمیل</label>
-                    <input name="email" class="form-control" placeholder="" type="email">
-                </div>
 
-                <button type="submit" class="btn btn-lg btn-primary full-width">ارسال ایمیل بازیابی</button>
+        <div class="border-form"></div>
 
-            </form>
-        </div>
+        <form class="row d-flex justify-content-center" action="{{route('password.email')}}" method="post">
+            @csrf
+
+            <div class="form-group">
+                @error('email') <small class="alert alert-danger p-1 me-3 mb-4"><i class="fa fa-exclamation-circle"></i> {{$message}} </small>@enderror
+
+                <label for="email" class="w-100 col-form-label me-2">
+                    <input id="email" class="form-control form-login" placeholder="ایمیل خود را وارد کنید" type="email"  name="email">
+                </label>
+            </div>
+
+
+            <button class="btn bg-danger text-light w-75 text-center  mt-3" type="submit">ارسال ایمیل بازیابی</button>
+
+        </form>
     </div>
 
 @endsection

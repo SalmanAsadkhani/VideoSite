@@ -162,10 +162,10 @@
             <div class="group-item text-center">
 
 
-                <div class="btn btn-download">
+                <a href="{{ $video->video_downloader}}"  class="btn btn-download">
                     <i class="fa fa-download" aria-hidden="true"></i>
                     <span>دانلود</span>
-                </div>
+                </a>
 
             </div>
         </div>
@@ -185,7 +185,7 @@
 
                 <div class="point">
                     <span class="text-light small">5/</span>
-                    <span class="video-rating"> {{ number_format($video->averageRating(), 1) }} </span>
+                    <span class="video-rating"> {{ number_format($video->rating) }} </span>
                 </div>
 
 

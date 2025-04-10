@@ -13,7 +13,7 @@
         <div class="border-form"></div>
 
         <form class="row d-flex justify-content-center" action="{{route('login.store')}}" method="post">
-        @csrf
+            @csrf
 
             <div class="form-group">
                 @error('email') <small class="alert alert-danger p-1 me-3 mb-4"><i class="fa fa-exclamation-circle"></i> {{$message}} </small>@enderror
@@ -36,7 +36,7 @@
             <div class="form-group">
                 <label class="w-100 col-form-label me-3 d-flex align-items-center gap-1" >
                     <input id="remember"  type="checkbox"  name="remember" >
-                   <span class="small">  مرا به خاطر بسپار </span>
+                    <span class="small">  مرا به خاطر بسپار </span>
                 </label>
             </div>
 
@@ -45,6 +45,7 @@
             <button class="btn bg-danger text-light w-75 text-center  mt-3" type="submit">ورود</button>
 
             <p class="mt-4 me-5"> حساب کاربری ندارید؟ <a class="text-danger" href="{{route("register.create")}}"> ثبت نام </a> </p>
+            <p class="me-5"> رمز عبور خود را فراموش کرده اید؟ <a class="text-danger" href="{{route("password.request")}}"> بازنشانی رمز عبور </a> </p>
 
 
         </form>

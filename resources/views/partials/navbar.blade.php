@@ -21,7 +21,7 @@
                 <div class="offcanvas-body">
                     <ul class="navbar-nav gap-4 ">
                         <li class="nav-item"><a class="nav-link text-white" href=" {{route('videos.latest')}} ">ویدیوهای جدید</a></li>
-                        <li class="nav-item"><a class="nav-link text-white" href="#">ویدیوهای پرطرفدار</a></li>
+                        <li class="nav-item"><a class="nav-link text-white" href=" {{route('videos.popular')}} ">ویدیوهای پرطرفدار</a></li>
                     </ul>
 
                 </div>
@@ -36,8 +36,8 @@
 
             <form class="d-flex me-3" id="search" action="#" method="get">
 
-                <input class="form-control search-box me-2" placeholder="جستجو ...">
-                <input type="hidden" name="q" value="{{request( )->query('q')}}" >
+                <input class="form-control search-box me-2" placeholder="جستجو ..."  name="q" value="{{request( )->query('q')}}" >
+{{--                <input type="hidden" name="q"  >--}}
 
             </form>
 

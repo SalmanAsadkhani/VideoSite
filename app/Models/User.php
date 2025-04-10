@@ -3,6 +3,9 @@
 namespace App\Models;
 
 
+use App\Jobs\SendEmail;
+use App\Mail\ForgotPassword;
+use App\Mail\VerificationEmail;
 use Hekmatinasser\Verta\Verta;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -46,6 +49,18 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function sendEmailVerificationNotification()
+    {
+        SendEmail::dispatchSync($this , new VerificationEmail($this));
+
+    }
+
+    public function sendPasswordResetNotification($token)
+    {
+        SendEmail::dispatchSync($this,new ForgotPassword($this ,$token));
+    }
+
 
     public function getgravatarAttribute()
     {

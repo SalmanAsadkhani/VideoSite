@@ -11,9 +11,15 @@
     </div>
 
     <div class="movies d-flex  flex-wrap justify-content-around align-items-center gap-3">
-        @foreach($newVideos as $video)
-            <x-video-box  :video="$video"/>
-        @endforeach
+
+            @if($newVideos->count())
+                @foreach($newVideos as $video)
+                    <x-video-box  :video="$video"/>
+                @endforeach
+            @else
+                <div class="text-warning "> هیچ ویدیویی مطابق با جستجوی شما یافت نشد</div>
+                <span><a class="text-danger" href="{{route('index')}}">بازگشت به صفحه اصلی</a></span>
+            @endif
     </div>
 
     <div class="d-flex justify-content-center mt-5" dir="ltr">

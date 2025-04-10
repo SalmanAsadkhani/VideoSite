@@ -75,9 +75,12 @@ class ProfileController extends Controller
     }
 
 
-    public function myvideos()
+    public function myvideos(Request $request )
     {
-        $videos = Video::where('user_id', Auth::id())->simplePaginate(12);
+        $videos = Video::where('user_id', Auth::id())
+            ->search($request->all())
+            ->simplePaginate(12)
+            ->withQueryString();;
 
 
 

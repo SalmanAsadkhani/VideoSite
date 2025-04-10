@@ -5,9 +5,14 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
+
 
 class EmailVerificationPromptController extends Controller
 {
+
+
     /**
      * Display the email verification prompt.
      *
@@ -16,9 +21,11 @@ class EmailVerificationPromptController extends Controller
      */
     public function __invoke(Request $request)
     {
-        return $request->user()->hasVerifiedEmail()
-                    ? redirect()->intended(RouteServiceProvider::HOME)
-                    : view('auth.verify-email');
+        if (Auth::user()->hasVerifiedEmail()) {
+            return redirect()->route('index');
+        }
 
+        Auth::user()->sendEmailVerificationNotification();
+        return redirect()->route('index')->with('success' , __('messages.sent_verification_link'));
     }
 }

@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Models\Video;
 use App\Services\VideoService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
@@ -19,7 +20,6 @@ class PanelControllers extends Controller
 
     public function home()
     {
-
         $topVideos = Video::withCount(['likes as vote' => function ($query) {
             $query->where('vote', 1);
         }])->orderBy('vote', 'desc')->simplePaginate(10);

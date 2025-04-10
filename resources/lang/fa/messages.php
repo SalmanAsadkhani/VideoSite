@@ -25,6 +25,8 @@ return [
     'change-profile-success' =>  "پروفایل با موفقیت تغییر یافت.",
 
     'change-password-success' =>  "رمز عبور با موفقیت تغییر یافت.",
+    'sent_verification_link' => "ایمیل تاییدیه ارسال شد.",
+    'Your-email-has-been-verified' => 'ایمیل شما با موفقیت تایید شد.'
 
 ];
 

@@ -48,7 +48,7 @@
         <a href="{{ route('videos.show', $video->slug) }}" class="d-flex justify-content-around text-light mt-2"  >
             <span class="small"> {{ $video->created_at }} </span>
             <span class="small"> <i class="fa fa-clock text-red"></i> {{$video->lengthInHuman}}   </span>
-            <span class="video-rating"> {{ number_format($video->averageRating(), 1) }} <i class="fa-solid fa-star" style="color: yellow"></i>   </span>
+            <span class="video-rating"> {{ number_format($video->rating ) }} <i class="fa-solid fa-star" style="color: yellow"></i>   </span>
         </a>
 
     </div>

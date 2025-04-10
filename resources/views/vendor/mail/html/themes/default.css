@@ -3,15 +3,9 @@
 body,
 body *:not(html):not(style):not(br):not(tr):not(code) {
     box-sizing: border-box;
-    font-family: Vazir , -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif,
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif,
         'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
     position: relative;
-    body {
-
-    }
-}
-*{
-    direction: rtl;
 }
 
 body {
@@ -23,7 +17,6 @@ body {
     margin: 0;
     padding: 0;
     width: 100% !important;
-    direction: rtl;
 }
 
 p,
@@ -31,7 +24,7 @@ ul,
 ol,
 blockquote {
     line-height: 1.4;
-    text-align: right;
+    text-align: left;
 }
 
 a {
@@ -49,28 +42,28 @@ h1 {
     font-size: 18px;
     font-weight: bold;
     margin-top: 0;
-    text-align: right;
+    text-align: left;
 }
 
 h2 {
     font-size: 16px;
     font-weight: bold;
     margin-top: 0;
-    text-align: right;
+    text-align: left;
 }
 
 h3 {
     font-size: 14px;
     font-weight: bold;
     margin-top: 0;
-    text-align: right;
+    text-align: left;
 }
 
 p {
     font-size: 16px;
     line-height: 1.5em;
     margin-top: 0;
-    text-align: right;
+    text-align: left;
 }
 
 p.sub {

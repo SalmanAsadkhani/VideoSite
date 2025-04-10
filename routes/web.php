@@ -69,7 +69,7 @@ Route::get('/categories/{category:slug}/videos', [CategoryVideoController::class
 
 
 
-    // comments
+// comments
 Route::post('/videos/{video}/comments', [\App\Http\Controllers\CommentController::class, 'store'])
     ->middleware('auth')
     ->name('comments.store');
@@ -88,25 +88,28 @@ Route::get('oldest/comments' , [CommentController::class, 'oldestComments'])
 
 /* like*/
 Route::get('{likeable_type}/{likeable_id}/like' , [LikeController::class, 'store'])
+    ->middleware('auth')
     ->name('like.store');
 
 Route::get('{likeable_type}/{likeable_id}/dislike' , [DisLikeController::class, 'store'])
+    ->middleware('auth')
     ->name('dislike.store');
 
 
 /* favorite*/
-    //ajax
+//ajax
 Route::post('/favorites' , [\App\Http\Controllers\FavoriteController::class, 'store'])
     ->middleware('auth')
     ->name('favorites.store');
 
 Route::get('favorites' , [\App\Http\Controllers\FavoriteController::class, 'show'])
+    ->middleware('auth')
     ->name('videos.favorites');
 
 
 
 /* profile*/
-Route::group(['prefix' => 'profile'], function () {
+Route::group(['prefix' => 'profile' , 'middleware' => ['auth']], function () {
     Route::get('/' , [ProfileController::class, 'profile'])
         ->name('profile');
 
@@ -121,7 +124,7 @@ Route::group(['prefix' => 'profile'], function () {
 });
 
 
-/* point user*/
+/* ratting */
 
 Route::post('/rate-video/{video:id}', [VideoRatingController::class, 'store'])
     ->middleware('auth')
@@ -179,7 +182,7 @@ Route::group([ 'prefix' => 'dashboard', 'middleware' => ['auth', 'admin']], func
 
 
     //ajax
-   Route::post('{video}/status' , [\App\Http\Controllers\panel\PanelControllers::class, 'status'])
+    Route::post('{video}/status' , [\App\Http\Controllers\panel\PanelControllers::class, 'status'])
         ->name('panel.video.status');
 
     Route::delete('delete/{video}' ,[\App\Http\Controllers\panel\PanelControllers::class , 'delete'])
@@ -247,18 +250,3 @@ Route::group([ 'prefix' => 'dashboard', 'middleware' => ['auth', 'admin']], func
 //     $user= User::find(6);
 //     $user->notify(new VideoProcessed(Video::first()));
 //});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
