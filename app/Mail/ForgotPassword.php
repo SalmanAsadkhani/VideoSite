@@ -57,7 +57,7 @@ class ForgotPassword extends Mailable
 
     protected function GenerateLink ()
     {
-        return dd( route('password.reset',['token' => $this->token  ,'email' => $this->user->email]));
+        return route('password.reset',['token' => $this->token  ,'email' => $this->user->email]);
 
     }
 }
