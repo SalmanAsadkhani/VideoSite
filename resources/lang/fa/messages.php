@@ -26,7 +26,10 @@ return [
 
     'change-password-success' =>  "رمز عبور با موفقیت تغییر یافت.",
     'sent_verification_link' => "ایمیل تاییدیه ارسال شد.",
-    'Your-email-has-been-verified' => 'ایمیل شما با موفقیت تایید شد.'
+    'Your-email-has-been-verified' => 'ایمیل شما با موفقیت تایید شد.',
+    'password_reset_success' => 'کلمه عبور با موفقیت تعویض شد',
+    'password_reset_failed' => 'مشکلی در هنگام تغییر پسورد پیش آمده است.',
+    'reset-link-failed'  => 'مشکلی در هنگام ارسال ایمیل بازیابی پیش آمده است، لطفا بعدا تلاش نمایید.'
 
 ];
 

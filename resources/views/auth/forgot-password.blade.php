@@ -1,5 +1,7 @@
 @extends('auth-layout')
 @section('content')
+
+
     <div class="container row d-flex justify-content-center mt-5 bg-dark p-4" style="max-width:40rem ; margin: auto; border-radius: 1rem ">
         <div class="login-header d-flex justify-content-between align-items-center w-100 ">
             <a href="{{route('index')}}"><img src=" {{asset('img/logo.png')}} " alt="logo"></a>

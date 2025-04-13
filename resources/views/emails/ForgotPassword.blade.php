@@ -1,10 +1,13 @@
-<x-mail::message>
-# Reset Password
 
-<x-mail::button :url="$link">
-    Reset Password
-</x-mail::button>
+@component('mail::message')
+    # Reset Password
 
-Thanks,<br>
+    @component('mail::button',  ['url' => $link])
+        Reset Password
+    @endcomponent
+
+Thanks
 {{ config('app.name') }}
-</x-mail::message>
+
+@endcomponent
+

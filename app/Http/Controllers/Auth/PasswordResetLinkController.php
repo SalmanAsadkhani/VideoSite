@@ -8,6 +8,12 @@ use Illuminate\Support\Facades\Password;
 
 class PasswordResetLinkController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('guest');
+    }
+
     /**
      * Display the password reset link request view.
      *
@@ -38,7 +44,7 @@ class PasswordResetLinkController extends Controller
             return back()->with('success' ,__('messages.reset_link_was_sent'));
         }
 
-        return  back()->with('reset link failed' , true);
+        return  back()->with('alert' , __('messages.reset-link-failed'));
 
     }
 }

@@ -53,14 +53,11 @@ class ForgotPassword extends Mailable
         );
     }
 
-    public function attachments(): array
-    {
-        return [];
-    }
+
 
     protected function GenerateLink ()
     {
-        return  route('password.reset.form',['token' => $this->token , 'email'  => $this->user->email]);
+        return dd( route('password.reset',['token' => $this->token  ,'email' => $this->user->email]));
 
     }
 }

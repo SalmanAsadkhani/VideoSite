@@ -16,11 +16,8 @@
 </head>
 
 <body>
-    @if (session('alert'))
-        <div class="alert alert-success">
-            {{ session('alert') }}
-        </div>
-    @endif
+
+    <x-alert/>
 
     @yield('content')
     <script src="{{ asset('js/main.js') }}"></script>

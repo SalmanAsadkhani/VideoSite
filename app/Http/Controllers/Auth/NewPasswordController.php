@@ -25,22 +25,18 @@ class NewPasswordController extends Controller
         return view('auth.reset-password' , compact('email' ,  'token'));
     }
 
-    /**
-     * Handle an incoming new password request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
-     *
-     * @throws \Illuminate\Validation\ValidationException
-     */
+
     public function store(Request $request)
     {
+
         //validate
         $request->validate([
             'token' => 'required',
             'email' => 'required|email',
             'password' => 'required|min:8|confirmed',
         ]);
+
+
 
         // check email password
         $response = Password::broker()->reset(
@@ -58,10 +54,12 @@ class NewPasswordController extends Controller
             $user->save();
         });
 
+
+
         if ($response === Password::PASSWORD_RESET) {
-            return redirect()->route('login')->with('passwordChanged' , true);
+            return redirect()->route('login.create')->with('success' , __('messages.password_reset_success'));
         }
 
-        return  back()->with('cantChangePassword' , true);
+        return  back()->with('alert' , __('messages.password_reset_failed'));
     }
 }

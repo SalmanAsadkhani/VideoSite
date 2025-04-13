@@ -2,7 +2,6 @@
 @section("content")
 
 
-
     <div class="container row d-flex justify-content-center mt-5 bg-dark p-4" style="max-width:40rem ; margin: auto; border-radius: 1rem ">
         <div class="login-header d-flex justify-content-between align-items-center w-100 ">
             <a href="{{route('index')}}"><img src=" {{asset('img/logo.png')}} " alt="logo"></a>
@@ -40,12 +39,11 @@
                 </label>
             </div>
 
-
+            <p class="me-5 mt-3 small"> رمز عبور خود را فراموش کرده اید؟ <a class="text-danger" href="{{route("password.request")}}"> بازنشانی رمز عبور </a> </p>
 
             <button class="btn bg-danger text-light w-75 text-center  mt-3" type="submit">ورود</button>
 
             <p class="mt-4 me-5"> حساب کاربری ندارید؟ <a class="text-danger" href="{{route("register.create")}}"> ثبت نام </a> </p>
-            <p class="me-5"> رمز عبور خود را فراموش کرده اید؟ <a class="text-danger" href="{{route("password.request")}}"> بازنشانی رمز عبور </a> </p>
 
 
         </form>
