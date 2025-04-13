@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark px-3 mb-3 " dir="rtl">
-    <div class="container-fluid  nav_header mt-3">
+    <div class="container-fluid  nav_header mt-3 ">
 
         <div class="d-flex gap-3  align-items-center menu-right ">
 
@@ -28,7 +28,6 @@
             </div>
 
         </div>
-
 
         <div class="d-flex  gap-3 me-3 menu-left">
 

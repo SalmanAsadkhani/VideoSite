@@ -33,6 +33,7 @@ class VideoFactory extends Factory
             'thumbnail' => 'https://loremflickr.com/446/240/world?random=' . rand(1, 99),
             'category_id' => Category::inRandomOrder()->first()->id ?? Category::factory()->create() ,
             "user_id" =>  User::inRandomOrder()->first()->id ??  User::factory()->create() ,
+
         ];
     }
 }

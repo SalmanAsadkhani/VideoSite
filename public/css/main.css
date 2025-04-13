@@ -542,7 +542,7 @@ linear-gradient(to right, transparent, #d32f2f, transparent);
 
 
 
-@media (max-width: 1200px ) {
+@media (max-width: 1400px ) {
     .nav_header{
         justify-content: space-between;
         align-items: start;
@@ -557,7 +557,9 @@ linear-gradient(to right, transparent, #d32f2f, transparent);
         align-items: center;
         justify-content: center !important;
         gap: 1rem;
+        margin-right: 10rem;
     }
+
 }
 
 @media (max-width: 870px) {
