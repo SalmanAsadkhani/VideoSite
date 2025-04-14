@@ -68,7 +68,7 @@ class VerificationEmail extends Mailable
 
     protected function urlGenerate()
     {
-      return ( URL::temporarySignedRoute('verification.verify', now()->addMinutes(2),
+      return ( URL::temporarySignedRoute('verification.verify', now()->addMinutes(5),
           [
               'id' => $this->user->id,
           ]));

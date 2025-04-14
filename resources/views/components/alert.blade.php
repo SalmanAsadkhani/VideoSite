@@ -22,5 +22,5 @@
         setTimeout(() => {
             document.getElementById("alert").remove();
         }, 500);
-    }, 3000);
+    }, 3055500);
 </script>
