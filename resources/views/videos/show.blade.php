@@ -41,10 +41,12 @@
                 <div class="d-flex flex-row-reverse  mt-2">
 
                     @for($i = 5; $i >= 1; $i--)
+                        
                         <a class="rate-star text-lighter" data-rating="{{ $i }}">
                             <i class="{{ $video->rating >= $i ? 'fa-solid fa-star' : ($video->rating >= $i - 0.5 ? 'fa-solid fa-star-half-stroke' : 'fa-regular fa-star') }}"
                                style="color: #ffc107;"></i> {{ $i }}
                         </a>
+
                     @endfor
 
                 </div>
@@ -284,25 +286,20 @@
 
                 success: function (response) {
                     alert("امتیاز شما ثبت شد!");
-                    // بروزرسانی عدد امتیاز
                     $(".video-rating").text(response.new_rating);
-
-                    // پر کردن ستاره‌ها
                     let newRating = parseFloat(response.new_rating);
-
                     $('.rate-star').each(function () {
                         let starVal = parseInt($(this).data('rating'));
                         let starIcon = $(this).find('i');
 
                         if (newRating >= starVal) {
-                            starIcon.attr('class', 'fa-solid fa-star'); // کامل
+                            starIcon.attr('class', 'fa-solid fa-star');
                         } else if (newRating >= starVal - 0.5) {
-                            starIcon.attr('class', 'fa-solid fa-star-half-stroke'); // نصفه
+                            starIcon.attr('class', 'fa-solid fa-star-half-stroke');
                         } else {
-                            starIcon.attr('class', 'fa-regular fa-star'); // خالی
+                            starIcon.attr('class', 'fa-regular fa-star');
                         }
 
-                        // ست کردن رنگ
                         starIcon.css('color', '#ffc107');
                     });
                 },

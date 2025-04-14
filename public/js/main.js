@@ -1,4 +1,6 @@
 
+
+
  // add to favorite
 function addFavorite() {
     document.querySelectorAll(".like-icon").forEach(button => {
@@ -11,7 +13,7 @@ function addFavorite() {
     });
 }
 
-// search
+// search movie icon
 function SearchToggle() {
     const search = document.querySelector(".search_icon");
     const searchIcon = search.querySelector("i");
