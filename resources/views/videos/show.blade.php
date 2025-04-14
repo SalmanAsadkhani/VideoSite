@@ -41,7 +41,7 @@
                 <div class="d-flex flex-row-reverse  mt-2">
 
                     @for($i = 5; $i >= 1; $i--)
-                        
+
                         <a class="rate-star text-lighter" data-rating="{{ $i }}">
                             <i class="{{ $video->rating >= $i ? 'fa-solid fa-star' : ($video->rating >= $i - 0.5 ? 'fa-solid fa-star-half-stroke' : 'fa-regular fa-star') }}"
                                style="color: #ffc107;"></i> {{ $i }}
