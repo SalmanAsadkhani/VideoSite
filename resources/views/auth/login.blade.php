@@ -31,11 +31,12 @@
                 </label>
             </div>
 
-           <div class="form-group">
-{{--               <x-recaptcha/>--}}
-               <div class="h-captcha" data-sitekey="{{config('services.recaptcha.site_key')}}"></div>
-           </div>
 
+              <div class="form=group me-3 col-form-label">
+                  <x-recaptcha/>
+                  <script src="https://www.google.com/recaptcha/api.js?hl=fa" async defer></script>
+
+              </div>
 
             <div class="form-group">
                 <label class="w-100 col-form-label me-3 d-flex align-items-center gap-1" >
