@@ -31,6 +31,11 @@
                 </label>
             </div>
 
+           <div class="form-group">
+{{--               <x-recaptcha/>--}}
+               <div class="h-captcha" data-sitekey="{{config('services.recaptcha.site_key')}}"></div>
+           </div>
+
 
             <div class="form-group">
                 <label class="w-100 col-form-label me-3 d-flex align-items-center gap-1" >
@@ -48,5 +53,6 @@
 
         </form>
     </div>
+
 
 @endsection
