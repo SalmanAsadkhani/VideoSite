@@ -32,9 +32,11 @@
             </div>
 
 
-              <div class="form=group me-3 col-form-label">
-                  <x-recaptcha/>
+              <div class="form=group">
+                  @error('g-captcha-response') <small class="alert alert-danger p-1 me-3"><i class="fa fa-exclamation-circle"></i> {{$message}} </small>@enderror
+                  <div class="g-recaptcha me-3 mt-2" data-sitekey="{{config('services.recaptcha.site_key')}}"></div>
                   <script src="https://www.google.com/recaptcha/api.js?hl=fa" async defer></script>
+
 
               </div>
 
