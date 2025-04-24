@@ -3,11 +3,13 @@
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SocialController;
 use App\Http\Controllers\VideoRatingController;
 use App\Models\Video;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\VideoController;
@@ -140,6 +142,13 @@ Route::post('/rate-video/{video:id}', [VideoRatingController::class, 'store'])
 
 require __DIR__ . '/auth.php';
 
+
+// login with google
+Route::get('redirect/{provider}' , [\App\Http\Controllers\SocialController::class , "redirect"])
+    ->name('social.redirect');
+
+Route::get('auth/{provider}/callback' , [\App\Http\Controllers\SocialController::class , "callback"])
+    ->name('social.callback');
 
 
 

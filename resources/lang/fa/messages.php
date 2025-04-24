@@ -9,7 +9,7 @@ return [
     'your_email_was_verified' => 'ایمیل شما با موفقیت تایید شد.',
     'reset_link_was_sent' => 'ایمیل بازیابی رمز عبور ارسال شد.',
     'your_password_was_reset' => 'رمز عبور با موفقیت بازیابی شد.',
-    'login.success' => 'ورود شما موفقیت بود .',
+    'You are now logged in' => 'ورود شما موفقیت بود .',
     'register.success' => 'کاربرگرامی ورود شما را خوش آمد میگوییم.',
     'please_first_login' =>  'برای بهره‌مند شدن از تمامی امکانات سایت لطفا وارد اکانت خود شوید ',
     'your_comment_was_successfully' => 'کامنت شما با موفقیت درج گردید',

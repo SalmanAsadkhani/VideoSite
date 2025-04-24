@@ -31,18 +31,19 @@ class LoginRequest extends FormRequest
     {
         return [
             'email' => ['required', 'string', 'email'],
-            'password' => ['required', 'string'],
-            'g-captcha-response' => ['required' , new Recaptcha],
+            'password' => ['required', 'min:8'],
+            'g-recaptcha-response' => 'required' ,  new Recaptcha() ,
+
         ];
+
     }
 
     public function messages()
     {
         return [
-            'g-captcha-response.required' => __('messages.captcha is required'),
+            'g-recaptcha-response.required' => __('messages.captcha is required'),
         ];
     }
-
     /**
      * Attempt to authenticate the request's credentials.
      *

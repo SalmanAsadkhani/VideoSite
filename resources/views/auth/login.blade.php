@@ -33,7 +33,7 @@
 
 
               <div class="form=group">
-                  @error('g-captcha-response') <small class="alert alert-danger p-1 me-3"><i class="fa fa-exclamation-circle"></i> {{$message}} </small>@enderror
+                  @error('g-recaptcha-response') <small class="alert alert-danger p-1 me-3"><i class="fa fa-exclamation-circle"></i> {{$message}} </small>@enderror
                   <div class="g-recaptcha me-3 mt-2" data-sitekey="{{config('services.recaptcha.site_key')}}"></div>
                   <script src="https://www.google.com/recaptcha/api.js?hl=fa" async defer></script>
 
@@ -50,6 +50,12 @@
             <p class="me-5 mt-3 small"> رمز عبور خود را فراموش کرده اید؟ <a class="text-danger" href="{{route("password.request")}}"> بازنشانی رمز عبور </a> </p>
 
             <button class="btn bg-danger text-light w-75 text-center  mt-3" type="submit">ورود</button>
+
+            <div class="flex items-center justify-end mt-4">
+                <a class="btn" href="{{ route('social.redirect' , 'google') }}" style="background: #9e49ff; color: #ffffff; padding: 10px; width: 100%; text-align: center; display: block; border-radius:3px;">
+                    ورود با گوگل
+                </a>
+            </div>
 
             <p class="mt-4 me-5"> حساب کاربری ندارید؟ <a class="text-danger" href="{{route("register.create")}}"> ثبت نام </a> </p>
 
