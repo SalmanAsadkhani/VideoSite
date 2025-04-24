@@ -151,7 +151,10 @@ Route::get('auth/{provider}/callback' , [\App\Http\Controllers\SocialController:
     ->name('social.callback');
 
 
-
+Route::get('tst' , function (){
+    $date = auth()->user()->avatar ?? auth()->user()->gravatar();
+    dd($date);
+});
 
 // panel admin
 

@@ -47,7 +47,12 @@
                 <div class="sidebar">
                     <div class="dropdown">
                         <a class="dropdown-toggle d-flex align-items-center gap-2 text-white" data-bs-toggle="dropdown" href="#">
-                            <img src=" {{ auth()->user()->avatar }} " class="profile-img" alt="profile-Image">
+                            <img
+                                src="{{ auth()->user()->avatar ?? auth()->user()->gravatar() }}"
+                                class="profile-img"
+                                alt="profile"
+                            />
+
                             <h6 class="ms-2"> {{auth()->user()->name }} </h6>
                         </a>
 

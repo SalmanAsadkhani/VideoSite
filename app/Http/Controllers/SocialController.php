@@ -22,14 +22,16 @@ class SocialController extends Controller
         $googleuser = Socialite::driver($driver)->user();
 
 
+        $user = User::updateOrCreate(
+            ['email' => $googleuser->getEmail()],
+            [
+                'name' => $googleuser->getName(),
+                'avatar' => $googleuser->getAvatar(),
+                'password' => bcrypt(Str::random(16)),
+                'email_verified_at' => now()->toDateTimeString()
+            ]
+        );
 
-        $user = User::updateOrCreate([
-            'name'     => $googleuser->getName(),
-            'email'    => $googleuser->getEmail(),
-            'avatar'    => $googleuser->getAvatar(),
-            'password'  => bcrypt(Str::random(16)),
-            'email_verified_at' => now()
-        ]);
 
         Auth::login($user);
         return redirect('/')->with('success',__('messages.You are now logged in'));
