@@ -44,6 +44,7 @@ class VideoController extends Controller
     {
         $videosRating = Video::with('ratings')->get();
 
+
         return view('videos.show', compact('video' , 'comment' , 'videosRating' ));
     }
 
