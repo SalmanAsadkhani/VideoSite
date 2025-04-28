@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use App\Models\User;
 use Closure;
+use Devrabiul\ToastMagic\Facades\ToastMagic;
 use Illuminate\Http\Request;
 
 class CheckVerifyEmail
@@ -20,6 +21,7 @@ class CheckVerifyEmail
         if ($request->user() && $request->user()->hasVerifiedEmail()) {
             return $next($request);
         }
-        return redirect()->route('index')->with('success', __('messages.please_verify_your_email'));
+        ToastMagic::warning(__('messages.please_verify_your_email'));
+        return redirect()->route('index');
     }
 }

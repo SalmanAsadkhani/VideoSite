@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Devrabiul\ToastMagic\Facades\ToastMagic;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -57,9 +58,12 @@ class NewPasswordController extends Controller
 
 
         if ($response === Password::PASSWORD_RESET) {
-            return redirect()->route('login.create')->with('success' , __('messages.password_reset_success'));
+            ToastMagic::success('messages.password_reset_success');
+
+            return redirect()->route('login.create');
         }
 
-        return  back()->with('alert' , __('messages.password_reset_failed'));
+        ToastMagic::error(__('messages.password_reset_failed'));
+        return  back();
     }
 }

@@ -10,6 +10,7 @@ use App\Models\Video;
 use App\Models\VideoRating;
 use App\Services\FFmpegAdapter;
 use App\Services\VideoService;
+use Devrabiul\ToastMagic\Facades\ToastMagic;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
@@ -36,8 +37,9 @@ class VideoController extends Controller
     {
 
         (new VideoService())->create($request->user(), $request->all());
+        ToastMagic::success(__('messages.video-successfully-created'));
 
-        return redirect()->route('index')->with('success', __('messages.success'));
+        return redirect()->route('index');
     }
 
     public function show( Video $video , Comment $comment  )
@@ -61,7 +63,8 @@ class VideoController extends Controller
     {
         (new VideoService())->update($video, $request->all());
 
-        return redirect()->route('panel.show.all')->with('success', __('messages.video_edited'));
+        ToastMagic::success(__('messages.video-successfully-updated'));
+        return redirect()->route('panel.show.all');
     }
 
 

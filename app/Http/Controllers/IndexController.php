@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Favorite;
 use App\Models\Video;
+use Devrabiul\ToastMagic\Facades\ToastMagic;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
@@ -18,7 +19,6 @@ class IndexController extends Controller
     {
 
 
-
         $RecommendedVideos = Video::all()->random(4);
         $LatestVideos = Video::orderBy('created_at', 'desc')->take(4)->search($request->all())->get();
 
@@ -30,14 +30,5 @@ class IndexController extends Controller
         return view('index', compact(   'RecommendedVideos' , 'LatestVideos' , 'topVideos' ));
     }
 
-    public function search(Request $request)
-    {
-        $videos = Video::all()->search($request->all());
 
-        dd($videos);
-
-        return view('search', compact('videos'));
-
-
-    }
 }

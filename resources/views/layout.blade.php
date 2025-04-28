@@ -22,8 +22,7 @@
 
 
     <script src="{{ asset('js/main.js') }}"></script>
-
-
+    {!! ToastMagic::scripts(); !!}
 </body>
 </html>
 

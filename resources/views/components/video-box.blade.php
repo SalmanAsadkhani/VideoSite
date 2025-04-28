@@ -49,6 +49,7 @@
                         _token: "{{ csrf_token() }}"
                     },
 
+
                     error: function () {
                         alert("مشکلی پیش آمده است!");
                     }

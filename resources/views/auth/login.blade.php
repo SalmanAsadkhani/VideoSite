@@ -37,7 +37,6 @@
                   <div class="g-recaptcha me-3 mt-2" data-sitekey="{{config('services.recaptcha.site_key')}}"></div>
                   <script src="https://www.google.com/recaptcha/api.js?hl=fa" async defer></script>
 
-
               </div>
 
             <div class="form-group">

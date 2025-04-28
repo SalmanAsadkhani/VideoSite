@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+use Devrabiul\ToastMagic\Facades\ToastMagic;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
@@ -38,6 +39,7 @@ class VerifyEmailController extends Controller
         session()->forget('verifyEmailStatus');
 
         //redirect
-        return redirect()->route('index')->with('success', __('messages.Your-email-has-been-verified'));
+        ToastMagic::success( __('messages.Your-email-has-been-verified'));
+        return redirect()->route('index');
     }
 }

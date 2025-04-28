@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Video;
+use Devrabiul\ToastMagic\Facades\ToastMagic;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,15 +18,12 @@ class LikeController extends Controller
             return back();
         } else {
 
-            return redirect()->route('login.create')->with('error', __('messages.please_first_login'));
+            ToastMagic::warning((__'messages.please_first_login'));
+            return redirect()->route('login.create');
         }
 
     }
 
-    public function test(video $video)
-    {
-        dd('$video');
-    }
 
 
 

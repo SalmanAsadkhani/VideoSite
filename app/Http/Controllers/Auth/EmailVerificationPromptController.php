@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+use Devrabiul\ToastMagic\Facades\ToastMagic;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -26,6 +27,7 @@ class EmailVerificationPromptController extends Controller
         }
 
         Auth::user()->sendEmailVerificationNotification();
-        return redirect()->route('index')->with('success' , __('messages.sent_verification_link'));
+        ToastMagic::success(__('messages.sent_verification_link'));
+        return redirect()->route('index');
     }
 }

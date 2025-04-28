@@ -12,12 +12,20 @@ const mix = require('laravel-mix');
  */
 mix.styles([
     'resources/css/style.css',
-], 'public/css/main.css');
+], 'public/css/main.css',
+    [
+        'resources/js/toast-magic.css',
+    ], 'public/js/toast-magic.css',
+);
 
 
 mix.js([
     'resources/js/custom.js',
-], 'public/js/main.js')
+], 'public/js/main.js',
+    [
+        'resources/js/toast-magic.js',
+    ], 'public/js/toast-magic.js',
+)
 
 mix.copyDirectory('resources/css/fonts', 'public/css/fonts')
 mix.copyDirectory('resources/img', 'public/img')

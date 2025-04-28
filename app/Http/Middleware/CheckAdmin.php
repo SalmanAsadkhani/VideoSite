@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Devrabiul\ToastMagic\Facades\ToastMagic;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,6 +22,7 @@ class CheckAdmin
             return $next($request);
         }
 
-         return redirect('/')->with('alert', __('messages.not found this page'));
+        ToastMagic::error(__('messages.not found this page'));
+         return redirect('/');
     }
 }

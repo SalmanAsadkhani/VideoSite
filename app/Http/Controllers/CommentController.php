@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreCommentRequest;
 use App\Models\Comment;
 use App\Models\Video;
+use Devrabiul\ToastMagic\Facades\ToastMagic;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,7 +19,9 @@ class CommentController extends Controller
             'comment' => Request('comment')
         ]);
 
-        return back()->with('success', __('messages.your_comment_was_successfully'));
+        ToastMagic::success(__('messages.your_comment_was_successfully'));
+
+        return back();
    }
 
 

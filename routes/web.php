@@ -6,6 +6,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SocialController;
 use App\Http\Controllers\VideoRatingController;
 use App\Models\Video;
+use Devrabiul\ToastMagic\Facades\ToastMagic;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -28,7 +29,6 @@ use \App\Http\Controllers\DisLikeController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 
 Route::get('/', [IndexController::class, 'index'])
     ->name('index');
@@ -151,13 +151,7 @@ Route::get('auth/{provider}/callback' , [\App\Http\Controllers\SocialController:
     ->name('social.callback');
 
 
-Route::get('tst' , function (){
-    $date = auth()->user()->avatar ?? auth()->user()->gravatar();
-    dd($date);
-});
-
 // panel admin
-
 Route::group([ 'prefix' => 'dashboard', 'middleware' => ['auth', 'admin']], function () {
 
     Route::get('home' , [\App\Http\Controllers\panel\PanelControllers::class, 'home'])

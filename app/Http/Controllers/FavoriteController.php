@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Favorite;
 use App\Models\User;
 use App\Models\Video;
+use Devrabiul\ToastMagic\Facades\ToastMagic;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -23,7 +24,7 @@ class FavoriteController extends Controller
         $favorite = Favorite::where('user_id', $user->id)->where('video_id', $videoId)->first();
 
         if ($favorite) {
-            $favorite->delete(); // حذف از علاقه‌مندی‌ها
+            $favorite->delete();
             return response()->json(['status' => 'removed']);
         } else {
             Favorite::create([
@@ -31,6 +32,8 @@ class FavoriteController extends Controller
                 'video_id' => $videoId,
                 'is_favorite' => true
             ]);
+
+
             return response()->json(['status' => 'added']);
         }
 

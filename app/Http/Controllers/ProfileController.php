@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Video;
+use Devrabiul\ToastMagic\Facades\ToastMagic;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -53,7 +54,8 @@ class ProfileController extends Controller
         ]);
 
 
-        return back()->with('success' , __('messages.change-profile-success'));
+        ToastMagic::success( __('messages.change-profile-success'));
+        return back();
 
     }
 
@@ -70,8 +72,8 @@ class ProfileController extends Controller
         ]);
 
 
-
-        return back()->with('success' , __('messages.change-password-success'));
+        ToastMagic::success(__('messages.change-password-success'));
+        return back();
     }
 
 
