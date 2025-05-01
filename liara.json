@@ -1,7 +1,5 @@
 {
-  "platform": "php",
-  "php": "8.0",
-  "app": "BotTelegram",
-  "port": 80,
-  "root": "public"
+  "laravel": {
+      "phpVersion": "8.0"
+  }
 }
