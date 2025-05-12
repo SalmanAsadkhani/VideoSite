@@ -13,6 +13,7 @@
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.9",
         "hekmatinasser/verta": "^1.12",
+        "ladumor/laravel-pwa": "^0.0.4",
         "laravel/framework": "^8.83",
         "laravel/sanctum": "^2.15",
         "laravel/socialite": "^5.20",

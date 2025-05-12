@@ -1,5 +1,9 @@
 {
-  "laravel": {
-      "phpVersion": "8.0"
-  }
+    "platform": "laravel",
+    "app": "video-online",
+    "port": 8000,
+    "phpVersion": "8.2",
+    "buildCommand": "composer install && npm install && npm run production && php artisan migrate --force && php artisan config:clear",
+    "startCommand": "php artisan serve --host=0.0.0.0 --port=8000",
+    "forceBuild": true
 }
